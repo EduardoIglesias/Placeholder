@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  Placeholder
+
+  Created by Eduardo Iglesias Fernández on 07/06/2020.
+  Copyright © 2020 Rindus. All rights reserved.
+*/
+
+// MARK: - Common
+
+"error.title" = "Error!";
+"error.message.noerror" = "no error";
+"error.button.cancel" = "Ok";
+
+
+// MARK: - Users List Scene
+
+"users.list.scene.title" = "Users list";
+"users.list.scene.nousers.label" = "No Users to list";
+"users.list.scene.error.error.message" = "We had some problems to get users info!";
