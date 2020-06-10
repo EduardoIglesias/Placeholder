@@ -12,24 +12,21 @@
 
 import UIKit
 
-@objc protocol UsersListRoutingLogic
-{
+@objc protocol UsersListRoutingLogic {
   func routeToUserDetail()
 }
 
-protocol UsersListDataPassing
-{
+protocol UsersListDataPassing {
     var dataStore: UsersListDataStore? { get }
 }
 
-class UsersListRouter: NSObject, UsersListRoutingLogic, UsersListDataPassing
-{
+class UsersListRouter: NSObject, UsersListRoutingLogic, UsersListDataPassing {
     // MARK: - Public Properties
     
   weak var viewController: UsersListViewController?
   var dataStore: UsersListDataStore?
   
-  // MARK: UsersListRoutingLogic
+  // MARK: - UsersListRoutingLogic
     
     func routeToUserDetail() {
 
@@ -42,15 +39,13 @@ class UsersListRouter: NSObject, UsersListRoutingLogic, UsersListDataPassing
     
     // MARK: Navigation
     
-    func navigateToUserDetail(source: UsersListViewController, destination: UserDetailViewController)
-    {
+    func navigateToUserDetail(source: UsersListViewController, destination: UserDetailViewController) {
       source.show(destination, sender: nil)
     }
   
   // MARK: Passing data
   
-  func passDataToUserDetail(source: UsersListDataStore?, destination: inout UserDetailDataStore?)
-  {
+  func passDataToUserDetail(source: UsersListDataStore?, destination: inout UserDetailDataStore?) {
     destination?.selectedUser = source?.selectedUser
   }
 }

@@ -14,7 +14,7 @@ import UIKit
 
 @objc protocol UserDetailRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+  func routeToTodosList()
 }
 
 protocol UserDetailDataPassing
@@ -24,37 +24,34 @@ protocol UserDetailDataPassing
 
 class UserDetailRouter: NSObject, UserDetailRoutingLogic, UserDetailDataPassing
 {
+    // MARK: - Public Properties
+    
   weak var viewController: UserDetailViewController?
   var dataStore: UserDetailDataStore?
   
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+  // MARK: - UsersListRoutingLogic
+    
+    func routeToTodosList() {
+        
+        let storyboard = UIStoryboard(name: Constants.Storyboards.TodosList, bundle: nil)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.TodosList) as! TodosListViewController
+        var destinationDS = destinationVC.router?.dataStore
+        passDataTodosList(source: dataStore!, destination: &destinationDS)
+        navigateTodosList(source: viewController!, destination: destinationVC)
+    }
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: UserDetailViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+  func navigateTodosList(source: UserDetailViewController, destination: TodosListViewController)
+  {
+    source.show(destination, sender: nil)
+  }
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: UserDetailDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+  func passDataTodosList(source: UserDetailDataStore?, destination: inout TodosListDataStore?)
+  {
+    destination?.title = source?.selectedUser?.name ?? ""
+    destination?.userId = "\(source?.selectedUser?.id ?? 0)"
+  }
 }

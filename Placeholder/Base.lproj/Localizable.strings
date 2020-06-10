@@ -8,7 +8,7 @@
 
 // MARK: - Common
 
-"back.button.cancel" = "Back";
+"back.button" = "Back";
 "error.title" = "Error!";
 "error.message.noerror" = "no error";
 "error.button.cancel" = "Ok";
@@ -33,4 +33,10 @@
 "user.detail.scene.phone" = "phone:";
 "user.detail.scene.website" = "website:";
 "user.detail.scene.company" = "company:";
+"user.detail.scene.todos.button.text" = "Access to Todos";
 
+// MARK: - Todos List Scene
+
+"todos.list.scene.title" = "Todos list";
+"todos.list.scene.nousers.label" = "No Todos to list";
+"todos.list.scene.error.error.message" = "We had some problems to get todos info!";

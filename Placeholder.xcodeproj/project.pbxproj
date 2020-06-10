@@ -24,6 +24,14 @@
 		1BB2C328249002C1000B81E1 /* UserDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2C322249002C1000B81E1 /* UserDetailInteractor.swift */; };
 		1BB2C32A2490032D000B81E1 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BB2C3292490032D000B81E1 /* UserDetail.storyboard */; };
 		1BCB71622491415C00297495 /* MKMapView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB71612491415C00297495 /* MKMapView+Extensions.swift */; };
+		1BCB716424914E0F00297495 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB716324914E0E00297495 /* Todo.swift */; };
+		1BCB716D2491530700297495 /* TodosListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB71662491530700297495 /* TodosListViewController.swift */; };
+		1BCB716E2491530800297495 /* TodosListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB71672491530700297495 /* TodosListInteractor.swift */; };
+		1BCB716F2491530800297495 /* TodosListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB71682491530700297495 /* TodosListWorker.swift */; };
+		1BCB71702491530800297495 /* TodosListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB71692491530700297495 /* TodosListPresenter.swift */; };
+		1BCB71712491530800297495 /* TodosList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BCB716A2491530700297495 /* TodosList.storyboard */; };
+		1BCB71732491530800297495 /* TodosListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB716C2491530700297495 /* TodosListModels.swift */; };
+		1BCB717724917C5A00297495 /* TodosListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB717624917C5A00297495 /* TodosListRouter.swift */; };
 		1BD57D7A248D26BA00ECF8A8 /* UsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D74248D26BA00ECF8A8 /* UsersListPresenter.swift */; };
 		1BD57D7C248D26BA00ECF8A8 /* UsersListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D76248D26BA00ECF8A8 /* UsersListRouter.swift */; };
 		1BD57D7D248D26BA00ECF8A8 /* UsersListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D77248D26BA00ECF8A8 /* UsersListModels.swift */; };
@@ -74,6 +82,14 @@
 		1BB2C322249002C1000B81E1 /* UserDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailInteractor.swift; sourceTree = "<group>"; };
 		1BB2C3292490032D000B81E1 /* UserDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
 		1BCB71612491415C00297495 /* MKMapView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Extensions.swift"; sourceTree = "<group>"; };
+		1BCB716324914E0E00297495 /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		1BCB71662491530700297495 /* TodosListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListViewController.swift; sourceTree = "<group>"; };
+		1BCB71672491530700297495 /* TodosListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListInteractor.swift; sourceTree = "<group>"; };
+		1BCB71682491530700297495 /* TodosListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListWorker.swift; sourceTree = "<group>"; };
+		1BCB71692491530700297495 /* TodosListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListPresenter.swift; sourceTree = "<group>"; };
+		1BCB716A2491530700297495 /* TodosList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TodosList.storyboard; sourceTree = "<group>"; };
+		1BCB716C2491530700297495 /* TodosListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListModels.swift; sourceTree = "<group>"; };
+		1BCB717624917C5A00297495 /* TodosListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListRouter.swift; sourceTree = "<group>"; };
 		1BD57D74248D26BA00ECF8A8 /* UsersListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListPresenter.swift; sourceTree = "<group>"; };
 		1BD57D76248D26BA00ECF8A8 /* UsersListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListRouter.swift; sourceTree = "<group>"; };
 		1BD57D77248D26BA00ECF8A8 /* UsersListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListModels.swift; sourceTree = "<group>"; };
@@ -212,6 +228,7 @@
 			children = (
 				1BD57D80248D26C100ECF8A8 /* UsersList */,
 				1BB2C31024900236000B81E1 /* UserDetail */,
+				1BCB71652491530700297495 /* TodosList */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -235,6 +252,20 @@
 				1BB2C31F249002C0000B81E1 /* UserDetailRouter.swift */,
 			);
 			path = UserDetail;
+			sourceTree = "<group>";
+		};
+		1BCB71652491530700297495 /* TodosList */ = {
+			isa = PBXGroup;
+			children = (
+				1BCB716A2491530700297495 /* TodosList.storyboard */,
+				1BCB716C2491530700297495 /* TodosListModels.swift */,
+				1BCB71662491530700297495 /* TodosListViewController.swift */,
+				1BCB71672491530700297495 /* TodosListInteractor.swift */,
+				1BCB71692491530700297495 /* TodosListPresenter.swift */,
+				1BCB717624917C5A00297495 /* TodosListRouter.swift */,
+				1BCB71682491530700297495 /* TodosListWorker.swift */,
+			);
+			path = TodosList;
 			sourceTree = "<group>";
 		};
 		1BD57D80248D26C100ECF8A8 /* UsersList */ = {
@@ -284,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				1BD57D97248DB43500ECF8A8 /* User.swift */,
+				1BCB716324914E0E00297495 /* Todo.swift */,
 				1BD57D98248DB43500ECF8A8 /* Post.swift */,
 			);
 			name = Models;
@@ -394,6 +426,7 @@
 				1B761A25248D14B0000051B1 /* Localizable.strings in Resources */,
 				1B761A07248D0A8B000051B1 /* Assets.xcassets in Resources */,
 				1BB2C32A2490032D000B81E1 /* UserDetail.storyboard in Resources */,
+				1BCB71712491530800297495 /* TodosList.storyboard in Resources */,
 				1BD57D82248D275C00ECF8A8 /* UsersList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,20 +447,27 @@
 			files = (
 				1BD57D88248D348E00ECF8A8 /* CustomNavigationBar.swift in Sources */,
 				1BD57D95248D398600ECF8A8 /* UIColor+Extensions.swift in Sources */,
+				1BCB71732491530800297495 /* TodosListModels.swift in Sources */,
+				1BCB716D2491530700297495 /* TodosListViewController.swift in Sources */,
+				1BCB717724917C5A00297495 /* TodosListRouter.swift in Sources */,
 				1BD57D91248D380B00ECF8A8 /* String+Extensions.swift in Sources */,
 				1B761A2E248D1A0D000051B1 /* Constants.swift in Sources */,
 				1BD57D7F248D26BA00ECF8A8 /* UsersListInteractor.swift in Sources */,
 				1BB2C30D248FAA99000B81E1 /* UsersListWorker.swift in Sources */,
 				1BD57D7D248D26BA00ECF8A8 /* UsersListModels.swift in Sources */,
 				1BB2C327249002C1000B81E1 /* UserDetailViewController.swift in Sources */,
+				1BCB716E2491530800297495 /* TodosListInteractor.swift in Sources */,
 				1BD57D93248D388800ECF8A8 /* UIFont+Extensions.swift in Sources */,
 				1BCB71622491415C00297495 /* MKMapView+Extensions.swift in Sources */,
 				1BB2C326249002C1000B81E1 /* UserDetailModels.swift in Sources */,
 				1BD57D99248DB43500ECF8A8 /* User.swift in Sources */,
+				1BCB71702491530800297495 /* TodosListPresenter.swift in Sources */,
 				1BD57D90248D380B00ECF8A8 /* UIView+Extensions.swift in Sources */,
 				1B7619FE248D0A8A000051B1 /* AppDelegate.swift in Sources */,
+				1BCB716424914E0F00297495 /* Todo.swift in Sources */,
 				1BD57D9A248DB43500ECF8A8 /* Post.swift in Sources */,
 				1BB2C325249002C1000B81E1 /* UserDetailRouter.swift in Sources */,
+				1BCB716F2491530800297495 /* TodosListWorker.swift in Sources */,
 				1BB2C323249002C1000B81E1 /* UserDetailPresenter.swift in Sources */,
 				1BB2C30A248EC303000B81E1 /* NetworkWorker.swift in Sources */,
 				1BB2C328249002C1000B81E1 /* UserDetailInteractor.swift in Sources */,

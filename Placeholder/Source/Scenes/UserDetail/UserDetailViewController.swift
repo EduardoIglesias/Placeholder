@@ -38,7 +38,7 @@ class UserDetailViewController: UIViewController {
     @IBOutlet weak var website: UILabel!
     @IBOutlet weak var companyTitle: UILabel!
     @IBOutlet weak var company: UILabel!
-    @IBOutlet private var mapView: MKMapView!
+    @IBOutlet weak var todosAccessButton: UIButton!
     
   // MARK: Object lifecycle
   
@@ -93,7 +93,10 @@ class UserDetailViewController: UIViewController {
         setUserInfo()
     }
     
-  // MARK: - Requests
+    @IBAction func todosAccessTouchUpInside(_ sender: Any) {
+        router?.routeToTodosList()
+    }
+    // MARK: - Requests
   
     private func updateNavBar() {
         let request = UserDetail.UpdateNavBar.Request()
@@ -126,6 +129,7 @@ extension UserDetailViewController: UserDetailDisplayLogic {
         phoneTitle.text = viewModel.viewFields.phoneTitle
         websiteTitle.text = viewModel.viewFields.websiteTitle
         companyTitle.text = viewModel.viewFields.companyTitle
+        todosAccessButton.setTitle(viewModel.viewFields.todosAccessButtonText, for: .normal)
     }
     
     func displayUserInfo(_ viewModel: UserDetail.SetUserInfo.ViewModel) {

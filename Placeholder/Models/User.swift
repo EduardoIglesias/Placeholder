@@ -55,5 +55,6 @@ struct UserFields: Decodable {
     let phoneTitle: String?
     let websiteTitle: String?
     let companyTitle: String?
+    let todosAccessButtonText: String?
 }
 

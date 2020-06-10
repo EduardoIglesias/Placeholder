@@ -32,7 +32,7 @@ class UserDetailInteractor: UserDetailBusinessLogic, UserDetailDataStore {
         let response = UserDetail.UpdateNavBar.Response(
             navData: NavigationBarData(
                 title: selectedUser?.name ?? "user.detail.scene.title".localized,
-                backTitle: "back.button.cancel".localized,
+                backTitle: "back.button".localized,
                 iconImage: UIImage(named: Constants.ImageNames.DetailIcon),
                 rightButtonImage: nil))
         
@@ -46,7 +46,8 @@ class UserDetailInteractor: UserDetailBusinessLogic, UserDetailDataStore {
            addressTitle: "user.detail.scene.address".localized,
            phoneTitle: "user.detail.scene.phone".localized,
            websiteTitle: "user.detail.scene.website".localized,
-           companyTitle: "user.detail.scene.company".localized)
+           companyTitle: "user.detail.scene.company".localized,
+           todosAccessButtonText: "user.detail.scene.todos.button.text".localized)
         let response = UserDetail.SetViewFields.Response(viewFields: viewFields)
         self.presenter?.presentViewFields(response)
     }

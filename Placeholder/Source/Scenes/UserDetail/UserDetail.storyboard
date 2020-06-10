@@ -108,6 +108,15 @@
                                     <constraint firstItem="N9J-cA-H9t" firstAttribute="height" secondItem="s5g-x1-wdk" secondAttribute="height" multiplier="0.7" id="C6s-Gn-e9a"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUi-cs-xsd">
+                                <rect key="frame" x="25" y="440" width="326" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="todosAccessTouchUpInside:" destination="Deu-NS-V5g" eventType="touchUpInside" id="nqx-eH-OgY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -131,6 +140,7 @@
                         <outlet property="emailTitle" destination="PYE-sx-Ve4" id="nEg-1k-eJR"/>
                         <outlet property="phone" destination="nJ4-e7-bM7" id="V4E-Sh-hxG"/>
                         <outlet property="phoneTitle" destination="2As-k9-AIH" id="pDt-pq-4NC"/>
+                        <outlet property="todosAccessButton" destination="zUi-cs-xsd" id="jr5-e9-TEz"/>
                         <outlet property="username" destination="4he-eX-5hg" id="0mK-2t-8HJ"/>
                         <outlet property="usernameTitle" destination="nrQ-r1-P3W" id="ezF-Mf-wGo"/>
                         <outlet property="website" destination="lEd-9L-Pl3" id="2u7-F2-w2K"/>

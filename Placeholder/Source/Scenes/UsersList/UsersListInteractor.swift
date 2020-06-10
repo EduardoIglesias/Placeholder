@@ -20,7 +20,6 @@ protocol UsersListBusinessLogic {
 }
 
 protocol UsersListDataStore {
-    var title: String { get }
     var userList: [User] { get }
     var error: String { get }
     var selectedUser: User? { get }
@@ -29,7 +28,6 @@ protocol UsersListDataStore {
 class UsersListInteractor: UsersListBusinessLogic, UsersListDataStore {
     var presenter: UsersListPresentationLogic?
     lazy var worker: UsersListWorkingLogic = UsersListWorker()
-    var title: String = ""
     var userList: [User] = []
     var error: String = ""
     var selectedUser: User?
