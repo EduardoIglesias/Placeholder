@@ -25,6 +25,13 @@ class UsersListViewController: UIViewController {
     
     private var viewModel: UsersList.FetchUsers.ViewModel?
     
+    // MARK: - Outlets
+    
+    @IBOutlet weak var customNV: CustomNavigationBar!
+    @IBOutlet weak var activitiIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var usersTableView: UITableView!
+    @IBOutlet weak var noUsersLabel: UILabel!
+    
     // MARK: - Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -82,7 +89,7 @@ class UsersListViewController: UIViewController {
         usersTableView.tableFooterView = UIView(frame: .zero)
     }
     
-    // MARK: View Lifecycle
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,14 +99,8 @@ class UsersListViewController: UIViewController {
         requestToFetchUsers()
     }
     
-    // MARK: - Outlets
-    
-    @IBOutlet weak var customNV: CustomNavigationBar!
-    @IBOutlet weak var activitiIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var usersTableView: UITableView!
-    @IBOutlet weak var noUsersLabel: UILabel!
-    
     // MARK: - Requests
+    
     private func updateNavBar() {
         let request = UsersList.UpdateNavBar.Request()
         interactor?.getNavBarData(request)
@@ -114,6 +115,13 @@ class UsersListViewController: UIViewController {
         let request = UsersList.FetchUsers.Request()
         interactor?.fetchUsers(request)
     }
+    
+    private func requestToSelectUser(by indexPath: IndexPath) {
+      let request = UsersList.SelectUser.Request(index: indexPath.row)
+      interactor?.selectUser(request)
+    }
+    
+    // MARK: - Alert
     
     func showAlert(title: String, message: String, cancelButtonText: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -174,13 +182,14 @@ extension UsersListViewController: UITableViewDelegate, UITableViewDataSource {
         }()
         
         cell.textLabel?.text = user.name
-        cell.detailTextLabel?.text = user.username
+        cell.detailTextLabel?.text = "\("users.list.scene.username".localized) \(user.username ?? "")   (\("users.list.scene.mail".localized) \(user.email ?? ""))"
         
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-//        presenter?.didSelectRowAt(indexPath.row)
+        requestToSelectUser(by: indexPath)
+        router?.routeToUserDetail()
     }
 }

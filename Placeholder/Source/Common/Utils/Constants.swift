@@ -21,10 +21,12 @@ struct Constants {
     
     struct Storyboards {
         static let UsersList: String = "UsersList"
+        static let UserDetail: String = "UserDetail"
     }
     
     struct ViewControllers {
         static let UsersList: String = "UsersListViewController"
+        static let UserDetail: String = "UserDetailViewController"
     }
     
     struct CellIdentifiers {
@@ -38,5 +40,6 @@ struct Constants {
     
     struct ImageNames {
         static let UserIcon: String = "UserIcon"
+        static let DetailIcon: String = "DetailIcon"
     }
 }

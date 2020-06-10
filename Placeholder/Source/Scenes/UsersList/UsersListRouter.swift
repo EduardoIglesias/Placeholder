@@ -14,47 +14,43 @@ import UIKit
 
 @objc protocol UsersListRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+  func routeToUserDetail()
 }
 
 protocol UsersListDataPassing
 {
-  var dataStore: UsersListDataStore? { get }
+    var dataStore: UsersListDataStore? { get }
 }
 
 class UsersListRouter: NSObject, UsersListRoutingLogic, UsersListDataPassing
 {
+    // MARK: - Public Properties
+    
   weak var viewController: UsersListViewController?
   var dataStore: UsersListDataStore?
   
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+  // MARK: UsersListRoutingLogic
+    
+    func routeToUserDetail() {
 
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: UsersListViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+            let storyboard = UIStoryboard(name: Constants.Storyboards.UserDetail, bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.UserDetail) as! UserDetailViewController
+            var destinationDS = destinationVC.router?.dataStore
+            passDataToUserDetail(source: dataStore!, destination: &destinationDS)
+            navigateToUserDetail(source: viewController!, destination: destinationVC)
+    }
+    
+    // MARK: Navigation
+    
+    func navigateToUserDetail(source: UsersListViewController, destination: UserDetailViewController)
+    {
+      source.show(destination, sender: nil)
+    }
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: UsersListDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+  func passDataToUserDetail(source: UsersListDataStore?, destination: inout UserDetailDataStore?)
+  {
+    destination?.selectedUser = source?.selectedUser
+  }
 }

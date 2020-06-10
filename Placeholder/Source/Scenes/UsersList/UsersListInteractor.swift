@@ -16,25 +16,25 @@ protocol UsersListBusinessLogic {
     func getNavBarData(_ request: UsersList.UpdateNavBar.Request)
     func getNoDataText(_ request: UsersList.SetText.Request)
     func fetchUsers(_ request: UsersList.FetchUsers.Request)
-//    func selectUser(_ request: UsersList.SelectUser.Request)
+    func selectUser(_ request: UsersList.SelectUser.Request)
 }
 
 protocol UsersListDataStore {
     var title: String { get }
     var userList: [User] { get }
     var error: String { get }
-//    var selectedUser: User? { get }
+    var selectedUser: User? { get }
 }
 
 class UsersListInteractor: UsersListBusinessLogic, UsersListDataStore {
     var presenter: UsersListPresentationLogic?
-   lazy var worker: UsersListWorkingLogic = UsersListWorker()
+    lazy var worker: UsersListWorkingLogic = UsersListWorker()
     var title: String = ""
     var userList: [User] = []
     var error: String = ""
-//    var selectedUser: User?
+    var selectedUser: User?
   
-  // MARK: - HomeBusinessLogic
+  // MARK: - UsersListBusinessLogic
   
     func getNavBarData(_ request: UsersList.UpdateNavBar.Request) {
         let response = UsersList.UpdateNavBar.Response(
@@ -70,5 +70,13 @@ class UsersListInteractor: UsersListBusinessLogic, UsersListDataStore {
             self.presenter?.presentFetchedUsers(response)
         }
         
+    }
+    
+    func selectUser(_ request: UsersList.SelectUser.Request) {
+        guard !self.userList.isEmpty, request.index < self.userList.count else {
+            return
+        }
+        
+        selectedUser = self.userList[request.index]
     }
 }

@@ -82,6 +82,10 @@ struct NavigationBarData {
         backTitleLabel.text = data.backTitle
         rightButton.isHidden = true
 
+        if let icImage = data.iconImage {
+            iconImage.image = icImage
+        }
+        
         if let image = data.rightButtonImage {
             rightButton.setImage(image, for: .normal)
             rightButton.isHidden = false

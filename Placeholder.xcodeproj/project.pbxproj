@@ -17,6 +17,13 @@
 		1BB2C30A248EC303000B81E1 /* NetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2C308248EC303000B81E1 /* NetworkWorker.swift */; };
 		1BB2C30D248FAA99000B81E1 /* UsersListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2C30C248FAA99000B81E1 /* UsersListWorker.swift */; };
 		1BB2C30F248FAD3E000B81E1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2C30E248FAD3E000B81E1 /* Utils.swift */; };
+		1BB2C323249002C1000B81E1 /* UserDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2C31D249002C0000B81E1 /* UserDetailPresenter.swift */; };
+		1BB2C325249002C1000B81E1 /* UserDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2C31F249002C0000B81E1 /* UserDetailRouter.swift */; };
+		1BB2C326249002C1000B81E1 /* UserDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2C320249002C1000B81E1 /* UserDetailModels.swift */; };
+		1BB2C327249002C1000B81E1 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2C321249002C1000B81E1 /* UserDetailViewController.swift */; };
+		1BB2C328249002C1000B81E1 /* UserDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2C322249002C1000B81E1 /* UserDetailInteractor.swift */; };
+		1BB2C32A2490032D000B81E1 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BB2C3292490032D000B81E1 /* UserDetail.storyboard */; };
+		1BCB71622491415C00297495 /* MKMapView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB71612491415C00297495 /* MKMapView+Extensions.swift */; };
 		1BD57D7A248D26BA00ECF8A8 /* UsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D74248D26BA00ECF8A8 /* UsersListPresenter.swift */; };
 		1BD57D7C248D26BA00ECF8A8 /* UsersListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D76248D26BA00ECF8A8 /* UsersListRouter.swift */; };
 		1BD57D7D248D26BA00ECF8A8 /* UsersListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D77248D26BA00ECF8A8 /* UsersListModels.swift */; };
@@ -60,6 +67,13 @@
 		1BB2C308248EC303000B81E1 /* NetworkWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkWorker.swift; sourceTree = "<group>"; };
 		1BB2C30C248FAA99000B81E1 /* UsersListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListWorker.swift; sourceTree = "<group>"; };
 		1BB2C30E248FAD3E000B81E1 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		1BB2C31D249002C0000B81E1 /* UserDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailPresenter.swift; sourceTree = "<group>"; };
+		1BB2C31F249002C0000B81E1 /* UserDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailRouter.swift; sourceTree = "<group>"; };
+		1BB2C320249002C1000B81E1 /* UserDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModels.swift; sourceTree = "<group>"; };
+		1BB2C321249002C1000B81E1 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		1BB2C322249002C1000B81E1 /* UserDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailInteractor.swift; sourceTree = "<group>"; };
+		1BB2C3292490032D000B81E1 /* UserDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
+		1BCB71612491415C00297495 /* MKMapView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Extensions.swift"; sourceTree = "<group>"; };
 		1BD57D74248D26BA00ECF8A8 /* UsersListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListPresenter.swift; sourceTree = "<group>"; };
 		1BD57D76248D26BA00ECF8A8 /* UsersListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListRouter.swift; sourceTree = "<group>"; };
 		1BD57D77248D26BA00ECF8A8 /* UsersListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListModels.swift; sourceTree = "<group>"; };
@@ -197,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				1BD57D80248D26C100ECF8A8 /* UsersList */,
+				1BB2C31024900236000B81E1 /* UserDetail */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -207,6 +222,19 @@
 				1BB2C308248EC303000B81E1 /* NetworkWorker.swift */,
 			);
 			path = Workers;
+			sourceTree = "<group>";
+		};
+		1BB2C31024900236000B81E1 /* UserDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1BB2C3292490032D000B81E1 /* UserDetail.storyboard */,
+				1BB2C320249002C1000B81E1 /* UserDetailModels.swift */,
+				1BB2C321249002C1000B81E1 /* UserDetailViewController.swift */,
+				1BB2C322249002C1000B81E1 /* UserDetailInteractor.swift */,
+				1BB2C31D249002C0000B81E1 /* UserDetailPresenter.swift */,
+				1BB2C31F249002C0000B81E1 /* UserDetailRouter.swift */,
+			);
+			path = UserDetail;
 			sourceTree = "<group>";
 		};
 		1BD57D80248D26C100ECF8A8 /* UsersList */ = {
@@ -247,6 +275,7 @@
 				1BD57D92248D388800ECF8A8 /* UIFont+Extensions.swift */,
 				1BD57D94248D398600ECF8A8 /* UIColor+Extensions.swift */,
 				1BD57D8F248D380B00ECF8A8 /* String+Extensions.swift */,
+				1BCB71612491415C00297495 /* MKMapView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -364,6 +393,7 @@
 				1B761A0A248D0A8B000051B1 /* LaunchScreen.storyboard in Resources */,
 				1B761A25248D14B0000051B1 /* Localizable.strings in Resources */,
 				1B761A07248D0A8B000051B1 /* Assets.xcassets in Resources */,
+				1BB2C32A2490032D000B81E1 /* UserDetail.storyboard in Resources */,
 				1BD57D82248D275C00ECF8A8 /* UsersList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,12 +419,18 @@
 				1BD57D7F248D26BA00ECF8A8 /* UsersListInteractor.swift in Sources */,
 				1BB2C30D248FAA99000B81E1 /* UsersListWorker.swift in Sources */,
 				1BD57D7D248D26BA00ECF8A8 /* UsersListModels.swift in Sources */,
+				1BB2C327249002C1000B81E1 /* UserDetailViewController.swift in Sources */,
 				1BD57D93248D388800ECF8A8 /* UIFont+Extensions.swift in Sources */,
+				1BCB71622491415C00297495 /* MKMapView+Extensions.swift in Sources */,
+				1BB2C326249002C1000B81E1 /* UserDetailModels.swift in Sources */,
 				1BD57D99248DB43500ECF8A8 /* User.swift in Sources */,
 				1BD57D90248D380B00ECF8A8 /* UIView+Extensions.swift in Sources */,
 				1B7619FE248D0A8A000051B1 /* AppDelegate.swift in Sources */,
 				1BD57D9A248DB43500ECF8A8 /* Post.swift in Sources */,
+				1BB2C325249002C1000B81E1 /* UserDetailRouter.swift in Sources */,
+				1BB2C323249002C1000B81E1 /* UserDetailPresenter.swift in Sources */,
 				1BB2C30A248EC303000B81E1 /* NetworkWorker.swift in Sources */,
+				1BB2C328249002C1000B81E1 /* UserDetailInteractor.swift in Sources */,
 				1BD57D7A248D26BA00ECF8A8 /* UsersListPresenter.swift in Sources */,
 				1BB2C30F248FAD3E000B81E1 /* Utils.swift in Sources */,
 				1BD57D7E248D26BA00ECF8A8 /* UsersListViewController.swift in Sources */,

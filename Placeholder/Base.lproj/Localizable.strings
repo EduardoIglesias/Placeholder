@@ -8,6 +8,7 @@
 
 // MARK: - Common
 
+"back.button.cancel" = "Back";
 "error.title" = "Error!";
 "error.message.noerror" = "no error";
 "error.button.cancel" = "Ok";
@@ -18,3 +19,18 @@
 "users.list.scene.title" = "Users list";
 "users.list.scene.nousers.label" = "No Users to list";
 "users.list.scene.error.error.message" = "We had some problems to get users info!";
+"users.list.scene.username" = "username:";
+"users.list.scene.mail" = "e-mail:";
+
+// MARK: - User Detail Scene
+
+"user.detail.scene.title" = "User info";
+"user.detail.scene.button.back" = "Back";
+"user.detail.scene.name" = "name";
+"user.detail.scene.username" = "username:";
+"user.detail.scene.email" = "e-mail:";
+"user.detail.scene.address" = "address:";
+"user.detail.scene.phone" = "phone:";
+"user.detail.scene.website" = "website:";
+"user.detail.scene.company" = "company:";
+
