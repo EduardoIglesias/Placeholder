@@ -25,6 +25,12 @@ struct Constants {
         static let POST: String = "POST"
     }
     
+    struct TodoHeaderFields {
+        static let typeField: String = "Content-Type"
+        static let typeValue: String = "application/json; charset=UTF-8"
+
+    }
+    
     struct TodoBodyFields {
         static let UserId: String = "userId="
         static let Title: String = "&title="

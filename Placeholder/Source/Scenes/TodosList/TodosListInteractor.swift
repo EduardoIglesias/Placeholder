@@ -71,8 +71,8 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
         worker.createNewTodo(newTodo: newTodo)  { result in
             switch result {
             case .success(let todo) :
-                print(todo)
                 self.todoList.append(todo)
+                print("*** Success: \(todo)")
           
                 self.error = "error.message.noerror".localized
             case .failure(let error) :

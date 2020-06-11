@@ -33,8 +33,7 @@ final class TodosListWorker: TodosListWorkingLogic {
         var request = URLRequest(url: requestUrl)
         request.httpMethod = Constants.HTTPMethod.GET
         
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        request.setValue(Constants.TodoHeaderFields.typeValue, forHTTPHeaderField: Constants.TodoHeaderFields.typeField)
         networkWorker.request(for: request, completion: completion)
         
     }
@@ -45,20 +44,16 @@ final class TodosListWorker: TodosListWorkingLogic {
         var request = URLRequest(url: requestUrl)
         request.httpMethod = Constants.HTTPMethod.POST
         
-       let newTodo: [String:Any] = ["title":"My First todo","completed":false,"userId":1]
-        let jsonTodo: Data
-        do{
-            jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
-            
+        let newTodo: NewTodo = NewTodo(userId: newTodo.userId, title: newTodo.title, completed: false)
+        do {
+            let jsonData = try JSONEncoder().encode(newTodo)
+            request.httpBody = jsonData
         } catch {
-            print("Error: cannot create JSON from todo")
+            print("*** Error: cannot create JSON from todo")
             return
-            
         }
-        request.httpBody = jsonTodo
-
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        
+        request.setValue(Constants.TodoHeaderFields.typeValue, forHTTPHeaderField: Constants.TodoHeaderFields.typeField)
         networkWorker.request(for: request, completion: completion)
         
     }

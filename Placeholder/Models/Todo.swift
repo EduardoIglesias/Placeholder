@@ -15,3 +15,9 @@ struct Todo: Decodable {
   let completed: Bool
 }
 
+struct NewTodo: Codable {
+  let userId: Int
+  let title: String
+  let completed: Bool
+}
+
