@@ -19,7 +19,10 @@ struct Constants {
         static let ExtraSlash: String = "/"
         static let Todos: String = "/todos"
     }
-    
+
+    struct HTTPMethod {
+        static let GET: String = "GET"
+    }
     
     struct Storyboards {
         static let UsersList: String = "UsersList"

@@ -27,6 +27,10 @@ final class UsersListWorker: UsersListWorkingLogic {
     // MARK: - UsersListWorkingLogic
     
     func fetchUsers(completion: @escaping (Result<[User]>) -> Void) {
-        networkWorker.getInfo(for: usersURL(), completion: completion)
+        let url = usersURL()
+        let requestUrl = url
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = Constants.HTTPMethod.GET
+        networkWorker.request(for: request, completion: completion)
     }
 }

@@ -15,7 +15,7 @@ public enum Result<Value> {
 
 protocol NetworkWorkingLogic {
     /// Main request to API
-    func getInfo<T: Decodable>(for url : URL, completion: @escaping (Result<T>) -> Void)
+    func request<T: Decodable>(for url : URLRequest, completion: @escaping (Result<T>) -> Void)
 }
 
 final class NetworkWorker: NetworkWorkingLogic {
@@ -27,7 +27,7 @@ final class NetworkWorker: NetworkWorkingLogic {
     
     // MARK: - NetworkWorkingLogic
     
-    func getInfo<T: Decodable>(for url : URL, completion: @escaping (Result<T>) -> Void) {
+    func request<T: Decodable>(for url : URLRequest, completion: @escaping (Result<T>) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
             DispatchQueue.main.async {
                 if let error = error {

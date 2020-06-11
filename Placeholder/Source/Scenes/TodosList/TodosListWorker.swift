@@ -28,6 +28,10 @@ final class TodosListWorker: TodosListWorkingLogic {
     // MARK: - UsersListWorkingLogic
     
     func fetchTodos(for userId: String, completion: @escaping (Result<[Todo]>) -> Void) {
-        networkWorker.getInfo(for: todosURL(for: userId), completion: completion)
+        let url = todosURL(for: userId)
+        let requestUrl = url
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = Constants.HTTPMethod.GET
+        networkWorker.request(for: request, completion: completion)
     }
 }
