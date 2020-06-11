@@ -60,7 +60,7 @@ class UsersListInteractor: UsersListBusinessLogic, UsersListDataStore {
                 }
                 self.error = "error.message.noerror".localized
             case .failure(let error) :
-                self.error = "users.list.scene.error.error.message".localized
+                self.error = "\("users.list.scene.error.get.message".localized):\n\(error.localizedDescription)"
                 print("*** Error: \(error.localizedDescription)")
             }
             

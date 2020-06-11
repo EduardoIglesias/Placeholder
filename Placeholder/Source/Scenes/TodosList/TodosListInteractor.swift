@@ -15,6 +15,8 @@ import UIKit
 protocol TodosListBusinessLogic {
     func getNavBarData(_ request: TodosList.UpdateNavBar.Request)
     func getNoDataText(_ request: TodosList.SetText.Request)
+    func getCreatePopUpText(_ request: TodosList.LaunchCreatePopup.Request)
+    func getCreateTodo(_ request: TodosList.CreateTodo.Request)
     func fetchTodos(_ request: TodosList.FetchTodos.Request)
     func selectTodo(_ request: TodosList.SelectTodo.Request)
 }
@@ -55,6 +57,35 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
         self.presenter?.presentNoDataText(response)
     }
     
+    func getCreatePopUpText(_ request: TodosList.LaunchCreatePopup.Request) {
+        let response = TodosList.LaunchCreatePopup.Response(
+            popupTitle: String("todos.list.scene.popup.title".localized),
+            popupCreateText: String("todos.list.scene.popup.button.create".localized),
+            popupCancelText: String("todos.list.scene.popup.button.cancel".localized))
+        self.presenter?.presentCreatePopUpText(response)
+    }
+    
+    func getCreateTodo(_ request: TodosList.CreateTodo.Request) {
+        let newTodo: Todo = Todo(userId: Int(self.userId) ?? 0, id: request.newTodoData.id, title: request.newTodoData.title, completed: request.newTodoData.completed)
+        
+        worker.createNewTodo(newTodo: newTodo)  { result in
+            switch result {
+            case .success(let todo) :
+                print(todo)
+                self.todoList.append(todo)
+          
+                self.error = "error.message.noerror".localized
+            case .failure(let error) :
+                self.error = "\("todos.list.scene.error.post.message".localized):\n\(error.localizedDescription)"
+                print("*** Error: \(error.localizedDescription)")
+            }
+            
+            let response = TodosList.CreateTodo.Response(todos: self.todoList, error: self.error)
+            self.presenter?.presentCreateTodo(response)
+        }
+        
+    }
+    
     func fetchTodos(_ request: TodosList.FetchTodos.Request) {
         worker.fetchTodos(for: userId)  { result in
             switch result {
@@ -64,7 +95,7 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
                 }
                 self.error = "error.message.noerror".localized
             case .failure(let error) :
-                self.error = "todos.list.scene.error.error.message".localized
+                self.error = "\("todos.list.scene.error.get.message".localized):\n\(error.localizedDescription)"
                 print("*** Error: \(error.localizedDescription)")
             }
             

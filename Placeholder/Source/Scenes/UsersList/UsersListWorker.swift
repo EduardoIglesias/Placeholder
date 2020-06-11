@@ -21,8 +21,7 @@ final class UsersListWorker: UsersListWorkingLogic {
     
     // MARK: - Private Properties
     private let networkWorker: NetworkWorkingLogic = NetworkWorker()
-    private func usersURL() -> URL { return getUrl(for: Constants.URL.Users)
-    }
+    private func usersURL() -> URL { return getUrl(for: Constants.URL.Users)}
     
     // MARK: - UsersListWorkingLogic
     
@@ -31,6 +30,7 @@ final class UsersListWorker: UsersListWorkingLogic {
         let requestUrl = url
         var request = URLRequest(url: requestUrl)
         request.httpMethod = Constants.HTTPMethod.GET
+        
         networkWorker.request(for: request, completion: completion)
     }
 }

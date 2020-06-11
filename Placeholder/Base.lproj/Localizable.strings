@@ -12,13 +12,14 @@
 "error.title" = "Error!";
 "error.message.noerror" = "no error";
 "error.button.cancel" = "Ok";
+"error.button.tryagain" = "Try again";
 
 
 // MARK: - Users List Scene
 
 "users.list.scene.title" = "Users list";
 "users.list.scene.nousers.label" = "No Users to list";
-"users.list.scene.error.error.message" = "We had some problems to get users info!";
+"users.list.scene.error.get.message" = "We had some problems to get users info";
 "users.list.scene.username" = "username:";
 "users.list.scene.mail" = "e-mail:";
 
@@ -39,4 +40,8 @@
 
 "todos.list.scene.title" = "Todos list";
 "todos.list.scene.nousers.label" = "No Todos to list";
-"todos.list.scene.error.error.message" = "We had some problems to get todos info!";
+"todos.list.scene.error.get.message" = "We had some problems to get todos info!";
+"todos.list.scene.error.post.message" = "We had some problems creating new todo";
+"todos.list.scene.popup.title" = "New Todo";
+"todos.list.scene.popup.button.create" = "Create";
+"todos.list.scene.popup.button.cancel" = "Cancel";

@@ -13,17 +13,17 @@
 import Foundation
 
 protocol TodosListWorkingLogic {
-    /// Request to API for loading list of users
     func fetchTodos(for userId: String, completion: @escaping (Result<[Todo]>) -> Void)
+    func createNewTodo(newTodo: Todo, completion: @escaping (Result<Todo>) -> Void)
 }
 
 final class TodosListWorker: TodosListWorkingLogic {
     
     // MARK: - Private Properties
     private let networkWorker: NetworkWorkingLogic = NetworkWorker()
-    private func todosURL(for userId : String) -> URL { return getUrl(for: "\(Constants.URL.Users)\(Constants.URL.ExtraSlash)\(userId)\(Constants.URL.Todos)")
-    }
-        
+    private func todosURL(for userId : String) -> URL { return getUrl(for: "\(Constants.URL.Users)\(Constants.URL.ExtraSlash)\(userId)\(Constants.URL.Todos)")}
+    private func allTodosURL() -> URL { return getUrl(for: Constants.URL.Todos)}
+          
     
     // MARK: - UsersListWorkingLogic
     
@@ -32,6 +32,34 @@ final class TodosListWorker: TodosListWorkingLogic {
         let requestUrl = url
         var request = URLRequest(url: requestUrl)
         request.httpMethod = Constants.HTTPMethod.GET
+        
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         networkWorker.request(for: request, completion: completion)
+        
+    }
+    
+    func createNewTodo(newTodo: Todo, completion: @escaping (Result<Todo>) -> Void) {
+        let url = allTodosURL()
+        let requestUrl = url
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = Constants.HTTPMethod.POST
+        
+       let newTodo: [String:Any] = ["title":"My First todo","completed":false,"userId":1]
+        let jsonTodo: Data
+        do{
+            jsonTodo = try JSONSerialization.data(withJSONObject: newTodo, options: [])
+            
+        } catch {
+            print("Error: cannot create JSON from todo")
+            return
+            
+        }
+        request.httpBody = jsonTodo
+
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        networkWorker.request(for: request, completion: completion)
+        
     }
 }

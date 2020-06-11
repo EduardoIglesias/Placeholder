@@ -16,12 +16,15 @@ protocol TodosListDisplayLogic: class {
     func displayNavBarData(_ viewModel: TodosList.UpdateNavBar.ViewModel)
     func displayNoDataText(_ viewModel: TodosList.SetText.ViewModel)
     func displayFetchedTodos(_ viewModel: TodosList.FetchTodos.ViewModel)
+    func displayCreateTodo(_ viewModel: TodosList.CreateTodo.ViewModel)
+    func displayCreatePopup(_ viewModel: TodosList.LaunchCreatePopup.ViewModel)
 }
 
 class TodosListViewController: UIViewController {
     var interactor: TodosListBusinessLogic?
     var router: (NSObjectProtocol & TodosListRoutingLogic & TodosListDataPassing)?
     var todoList: [Todo] = []
+    var newTodoText: String = ""
     
     private var viewModel: TodosList.FetchTodos.ViewModel?
     
@@ -31,6 +34,7 @@ class TodosListViewController: UIViewController {
     @IBOutlet weak var activitiIndicator: UIActivityIndicatorView!
     @IBOutlet weak var todosTableView: UITableView!
     @IBOutlet weak var noTodosLabel: UILabel!
+    @IBOutlet weak var createTodoButton: UIImageView!
     
     // MARK: - Object lifecycle
     
@@ -65,8 +69,11 @@ class TodosListViewController: UIViewController {
         todosTableView.dataSource = self
         customNV.delegate = self
         
-        todosTableView.isHidden = true
-        noTodosLabel.isHidden = true
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
+        tapGesture.addTarget(self, action: #selector(launchCreatePopUp))
+        createTodoButton.addGestureRecognizer(tapGesture)
+        createTodoButton.isUserInteractionEnabled = true
+        
         applyStyle()
     }
     
@@ -78,6 +85,7 @@ class TodosListViewController: UIViewController {
         todosTableView.reloadData()
         activitiIndicator.stopAnimating()
         todosTableView.isHidden = !(self.todoList.count > 0)
+        createTodoButton.isHidden = !(self.todoList.count > 0)
     }
     
      fileprivate func noTodosLabel(hide: Bool) {
@@ -96,7 +104,11 @@ class TodosListViewController: UIViewController {
         setupView()
         updateNavBar()
         setNoDataText()
-        requestToFetchTodos()
+        fetchedTodosAction()
+    }
+    
+    @objc func launchCreatePopUp() {
+       requestToLaunchCreatePopUp()
     }
     
     // MARK: - Requests
@@ -115,6 +127,16 @@ class TodosListViewController: UIViewController {
         let request = TodosList.FetchTodos.Request()
         interactor?.fetchTodos(request)
     }
+   
+    private func requestToLaunchCreatePopUp() {
+      let request = TodosList.LaunchCreatePopup.Request()
+      interactor?.getCreatePopUpText(request)
+    }
+    
+    private func requestToCreateTodo(newTodo: Todo) {
+        let request = TodosList.CreateTodo.Request(newTodoData: newTodo)
+      interactor?.getCreateTodo(request)
+    }
     
     private func requestToSelectTodo(by indexPath: IndexPath) {
       let request = TodosList.SelectTodo.Request(index: indexPath.row)
@@ -123,14 +145,35 @@ class TodosListViewController: UIViewController {
     
     // MARK: - Alert
     
-    func showAlert(title: String, message: String, cancelButtonText: String?) {
+    func showAlert(title: String, message: String, cancelButtonText: String?, actionButtonText: String?, complention: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let alertCancel = UIAlertAction(title: cancelButtonText, style: .default, handler: nil)
+        
+        let alertAction = UIAlertAction(title: actionButtonText, style: .default, handler: { (_) in
+            complention?()
+        })
+        
         alert.addAction(alertCancel)
+        alert.addAction(alertAction)
         
         self.present(alert, animated: true, completion: nil)
         
+    }
+    
+    @objc func createTodoAction() {
+        let newTodo:Todo = Todo(userId: 0, id: 0, title: self.newTodoText, completed: false)
+        self.requestToCreateTodo(newTodo: newTodo)
+    }
+    
+    @objc func fetchedTodosAction() {
+        todosTableView.isHidden = true
+        noTodosLabel.isHidden = true
+        createTodoButton.isHidden = true
+        activitiIndicator.isHidden = false
+        activitiIndicator.startAnimating()
+        
+        requestToFetchTodos()
     }
     
     // MARK: - UsersListDisplayLogic
@@ -145,11 +188,37 @@ extension TodosListViewController: TodosListDisplayLogic {
         noTodosLabel.text = viewModel.noDataText
     }
     
+    func displayCreatePopup(_ viewModel: TodosList.LaunchCreatePopup.ViewModel) {
+        let alert = UIAlertController(title: viewModel.popupTitle, message: "", preferredStyle: .alert)
+
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+
+        alert.addAction(UIAlertAction(title: viewModel.popupCancelText, style: .default, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: viewModel.popupCreateText, style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields?[0]
+            self.newTodoText = textField?.text ?? ""
+            self.createTodoAction()
+        }))
+
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func displayCreateTodo(_ viewModel: TodosList.CreateTodo.ViewModel) {
+        self.todoList = viewModel.todos
+        reloadData()
+        if viewModel.error != "error.message.noerror".localized {
+            showAlert(title: "error.title".localized, message: viewModel.error, cancelButtonText: "error.button.cancel".localized, actionButtonText: "error.button.tryagain".localized, complention: createTodoAction)
+        }
+    }
+    
     func displayFetchedTodos(_ viewModel: TodosList.FetchTodos.ViewModel) {
         self.todoList = viewModel.todos
         reloadData()
         if viewModel.error != "error.message.noerror".localized {
-            showAlert(title: "error.title".localized, message: "todos.list.scene.error.error.message".localized, cancelButtonText: "error.button.cancel".localized)
+            showAlert(title: "error.title".localized, message: viewModel.error, cancelButtonText: "error.button.cancel".localized, actionButtonText: "error.button.tryagain".localized, complention: fetchedTodosAction)
         }
     }
 }

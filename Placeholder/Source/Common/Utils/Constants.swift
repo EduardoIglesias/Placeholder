@@ -22,6 +22,13 @@ struct Constants {
 
     struct HTTPMethod {
         static let GET: String = "GET"
+        static let POST: String = "POST"
+    }
+    
+    struct TodoBodyFields {
+        static let UserId: String = "userId="
+        static let Title: String = "&title="
+        static let Completed: String = "&completed="
     }
     
     struct Storyboards {

@@ -23,7 +23,6 @@
 		1BB2C327249002C1000B81E1 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2C321249002C1000B81E1 /* UserDetailViewController.swift */; };
 		1BB2C328249002C1000B81E1 /* UserDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB2C322249002C1000B81E1 /* UserDetailInteractor.swift */; };
 		1BB2C32A2490032D000B81E1 /* UserDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BB2C3292490032D000B81E1 /* UserDetail.storyboard */; };
-		1BCB71622491415C00297495 /* MKMapView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB71612491415C00297495 /* MKMapView+Extensions.swift */; };
 		1BCB716424914E0F00297495 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB716324914E0E00297495 /* Todo.swift */; };
 		1BCB716D2491530700297495 /* TodosListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB71662491530700297495 /* TodosListViewController.swift */; };
 		1BCB716E2491530800297495 /* TodosListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCB71672491530700297495 /* TodosListInteractor.swift */; };
@@ -45,7 +44,6 @@
 		1BD57D93248D388800ECF8A8 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D92248D388800ECF8A8 /* UIFont+Extensions.swift */; };
 		1BD57D95248D398600ECF8A8 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D94248D398600ECF8A8 /* UIColor+Extensions.swift */; };
 		1BD57D99248DB43500ECF8A8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D97248DB43500ECF8A8 /* User.swift */; };
-		1BD57D9A248DB43500ECF8A8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D98248DB43500ECF8A8 /* Post.swift */; };
 		1BD57DA1248DCDB100ECF8A8 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1BD57D9D248DCDB100ECF8A8 /* Lato-Black.ttf */; };
 		1BD57DA2248DCDB100ECF8A8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1BD57D9E248DCDB100ECF8A8 /* Lato-Regular.ttf */; };
 /* End PBXBuildFile section */
@@ -81,7 +79,6 @@
 		1BB2C321249002C1000B81E1 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		1BB2C322249002C1000B81E1 /* UserDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailInteractor.swift; sourceTree = "<group>"; };
 		1BB2C3292490032D000B81E1 /* UserDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDetail.storyboard; sourceTree = "<group>"; };
-		1BCB71612491415C00297495 /* MKMapView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Extensions.swift"; sourceTree = "<group>"; };
 		1BCB716324914E0E00297495 /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		1BCB71662491530700297495 /* TodosListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListViewController.swift; sourceTree = "<group>"; };
 		1BCB71672491530700297495 /* TodosListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListInteractor.swift; sourceTree = "<group>"; };
@@ -103,7 +100,6 @@
 		1BD57D92248D388800ECF8A8 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		1BD57D94248D398600ECF8A8 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		1BD57D97248DB43500ECF8A8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		1BD57D98248DB43500ECF8A8 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		1BD57D9D248DCDB100ECF8A8 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		1BD57D9E248DCDB100ECF8A8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -306,7 +302,6 @@
 				1BD57D92248D388800ECF8A8 /* UIFont+Extensions.swift */,
 				1BD57D94248D398600ECF8A8 /* UIColor+Extensions.swift */,
 				1BD57D8F248D380B00ECF8A8 /* String+Extensions.swift */,
-				1BCB71612491415C00297495 /* MKMapView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -316,7 +311,6 @@
 			children = (
 				1BD57D97248DB43500ECF8A8 /* User.swift */,
 				1BCB716324914E0E00297495 /* Todo.swift */,
-				1BD57D98248DB43500ECF8A8 /* Post.swift */,
 			);
 			name = Models;
 			path = Placeholder/Models;
@@ -458,14 +452,12 @@
 				1BB2C327249002C1000B81E1 /* UserDetailViewController.swift in Sources */,
 				1BCB716E2491530800297495 /* TodosListInteractor.swift in Sources */,
 				1BD57D93248D388800ECF8A8 /* UIFont+Extensions.swift in Sources */,
-				1BCB71622491415C00297495 /* MKMapView+Extensions.swift in Sources */,
 				1BB2C326249002C1000B81E1 /* UserDetailModels.swift in Sources */,
 				1BD57D99248DB43500ECF8A8 /* User.swift in Sources */,
 				1BCB71702491530800297495 /* TodosListPresenter.swift in Sources */,
 				1BD57D90248D380B00ECF8A8 /* UIView+Extensions.swift in Sources */,
 				1B7619FE248D0A8A000051B1 /* AppDelegate.swift in Sources */,
 				1BCB716424914E0F00297495 /* Todo.swift in Sources */,
-				1BD57D9A248DB43500ECF8A8 /* Post.swift in Sources */,
 				1BB2C325249002C1000B81E1 /* UserDetailRouter.swift in Sources */,
 				1BCB716F2491530800297495 /* TodosListWorker.swift in Sources */,
 				1BB2C323249002C1000B81E1 /* UserDetailPresenter.swift in Sources */,

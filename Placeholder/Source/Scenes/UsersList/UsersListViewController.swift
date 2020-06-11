@@ -65,8 +65,6 @@ class UsersListViewController: UIViewController {
         usersTableView.dataSource = self
         customNV.delegate = self
         
-        usersTableView.isHidden = true
-        noUsersLabel.isHidden = true
         applyStyle()
     }
     
@@ -96,7 +94,7 @@ class UsersListViewController: UIViewController {
         setupView()
         updateNavBar()
         setNoDataText()
-        requestToFetchUsers()
+        fetchedUsersAction()
     }
     
     // MARK: - Requests
@@ -123,14 +121,29 @@ class UsersListViewController: UIViewController {
     
     // MARK: - Alert
     
-    func showAlert(title: String, message: String, cancelButtonText: String?) {
+    func showAlert(title: String, message: String, cancelButtonText: String?, actionButtonText: String?, complention: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let alertCancel = UIAlertAction(title: cancelButtonText, style: .default, handler: nil)
+        
+        let alertAction = UIAlertAction(title: actionButtonText, style: .default, handler: { (_) in
+            complention?()
+        })
+        
         alert.addAction(alertCancel)
+        alert.addAction(alertAction)
         
         self.present(alert, animated: true, completion: nil)
         
+    }
+    
+    @objc func fetchedUsersAction() {
+        usersTableView.isHidden = true
+        noUsersLabel.isHidden = true
+        activitiIndicator.isHidden = false
+        activitiIndicator.startAnimating()
+        
+        requestToFetchUsers()
     }
     
     // MARK: - UsersListDisplayLogic
@@ -149,7 +162,7 @@ extension UsersListViewController: UsersListDisplayLogic {
         self.userList = viewModel.users
         reloadData()
         if viewModel.error != "error.message.noerror".localized {
-            showAlert(title: "error.title".localized, message: "users.list.scene.error.error.message".localized, cancelButtonText: "error.button.cancel".localized)
+            showAlert(title: "error.title".localized, message: viewModel.error, cancelButtonText: "error.button.cancel".localized, actionButtonText: "error.button.tryagain".localized, complention: fetchedUsersAction)
         }
     }
 }

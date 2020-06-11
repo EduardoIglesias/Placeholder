@@ -67,4 +67,39 @@ enum TodosList {
         }
     }
     
+    // MARK: - Launch Create Popup
+    
+    enum LaunchCreatePopup {
+        struct Request {}
+        
+        struct Response {
+            let popupTitle: String
+            let popupCreateText: String
+            let popupCancelText: String
+        }
+        
+        struct ViewModel {
+            let popupTitle: String
+            let popupCreateText: String
+            let popupCancelText: String
+        }
+    }
+    
+    // MARK: - Create Todo
+    
+    enum CreateTodo {
+        struct Request {
+            let newTodoData: Todo
+        }
+        
+        struct Response {
+            let todos: [Todo]
+            let error: String
+        }
+        
+        struct ViewModel {
+            let todos: [Todo]
+            let error: String
+        }
+    }
 }

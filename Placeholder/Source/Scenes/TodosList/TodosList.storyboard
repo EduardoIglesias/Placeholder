@@ -33,6 +33,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlusIcon" id="PZs-TP-wAt">
+                                <rect key="frame" x="300" y="600" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                            </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="4dQ-N3-hst">
                                 <rect key="frame" x="177.5" y="368.5" width="20" height="20"/>
                             </activityIndicatorView>
@@ -54,6 +58,7 @@
                     </view>
                     <connections>
                         <outlet property="activitiIndicator" destination="4dQ-N3-hst" id="epy-UN-Gco"/>
+                        <outlet property="createTodoButton" destination="PZs-TP-wAt" id="e2G-2f-tkY"/>
                         <outlet property="customNV" destination="eR0-6o-oCn" id="dap-tb-WQn"/>
                         <outlet property="noTodosLabel" destination="bsM-II-GMf" id="VA4-DN-krY"/>
                         <outlet property="todosTableView" destination="Rcf-ZE-z4l" id="De0-2j-Y2x"/>
@@ -64,4 +69,7 @@
             <point key="canvasLocation" x="66.400000000000006" y="138.0809595202399"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PlusIcon" width="256" height="256"/>
+    </resources>
 </document>

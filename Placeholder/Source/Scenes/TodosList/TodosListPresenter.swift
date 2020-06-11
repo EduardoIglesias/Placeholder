@@ -15,6 +15,8 @@ import UIKit
 protocol TodosListPresentationLogic {
     func presentNavBarData(_ response: TodosList.UpdateNavBar.Response)
     func presentNoDataText(_ response: TodosList.SetText.Response)
+    func presentCreatePopUpText(_ response: TodosList.LaunchCreatePopup.Response)
+    func presentCreateTodo(_ response: TodosList.CreateTodo.Response)
     func presentFetchedTodos(_ response: TodosList.FetchTodos.Response)
 }
 
@@ -33,6 +35,19 @@ class TodosListPresenter: TodosListPresentationLogic {
         let viewModel = TodosList.SetText.ViewModel(
             noDataText: response.noDataText)
         viewController?.displayNoDataText(viewModel)
+    }
+    
+   func presentCreatePopUpText(_ response: TodosList.LaunchCreatePopup.Response) {
+        let viewModel = TodosList.LaunchCreatePopup.ViewModel(
+            popupTitle: response.popupTitle,
+            popupCreateText: response.popupCreateText,
+            popupCancelText: response.popupCancelText)
+        viewController?.displayCreatePopup(viewModel)
+    }
+    
+    func presentCreateTodo(_ response: TodosList.CreateTodo.Response) {
+        let viewModel = TodosList.CreateTodo.ViewModel(todos: response.todos, error: response.error)
+        viewController?.displayCreateTodo(viewModel)
     }
     
     func presentFetchedTodos(_ response: TodosList.FetchTodos.Response) {
