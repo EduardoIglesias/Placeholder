@@ -56,6 +56,7 @@ struct Constants {
     
     struct CellIHeights {
         static let UsersList: CGFloat = 60.0
+        static let TodosList: CGFloat = 80.0
 
     }
     
@@ -63,5 +64,6 @@ struct Constants {
         static let CloseIcon: String = "closeIcon"
         static let UserIcon: String = "UserIcon"
         static let DetailIcon: String = "DetailIcon"
+        static let TodoIcon: String = "TodoIcon"
     }
 }

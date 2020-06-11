@@ -65,6 +65,7 @@ class TodosListViewController: UIViewController {
     }
     
     func setupView() {
+        todosTableView.register(TodosListTableViewCell.self )
         todosTableView.delegate = self
         todosTableView.dataSource = self
         customNV.delegate = self
@@ -241,7 +242,7 @@ extension TodosListViewController: CustomNavigationBarDelegate {
 extension TodosListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.CellIHeights.UsersList
+        return Constants.CellIHeights.TodosList
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -251,14 +252,12 @@ extension TodosListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let todo = self.todoList[indexPath.row]
         
-        let cell: UITableViewCell = {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.UsersList) else {
-                return UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: Constants.CellIdentifiers.UsersList)
-            }
-            return cell
-        }()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TodosListTableViewCell.cellIdentifier) as? TodosListTableViewCell else {
+            return UITableViewCell()
+        }
+
         
-        cell.textLabel?.text = todo.title
+        cell.updateUI(item: todo)
         
         return cell
     }

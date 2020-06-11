@@ -46,6 +46,10 @@
 		1BD57D99248DB43500ECF8A8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D97248DB43500ECF8A8 /* User.swift */; };
 		1BD57DA1248DCDB100ECF8A8 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1BD57D9D248DCDB100ECF8A8 /* Lato-Black.ttf */; };
 		1BD57DA2248DCDB100ECF8A8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1BD57D9E248DCDB100ECF8A8 /* Lato-Regular.ttf */; };
+		1BF155602492CEE7000F8E71 /* TodosListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1555E2492CEE7000F8E71 /* TodosListTableViewCell.swift */; };
+		1BF155612492CEE7000F8E71 /* TodosListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF1555F2492CEE7000F8E71 /* TodosListTableViewCell.xib */; };
+		1BF155632492ECAB000F8E71 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF155622492ECAB000F8E71 /* UITableView+Extensions.swift */; };
+		1BF155652492ED68000F8E71 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF155642492ED68000F8E71 /* UITableViewCell+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +106,10 @@
 		1BD57D97248DB43500ECF8A8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1BD57D9D248DCDB100ECF8A8 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		1BD57D9E248DCDB100ECF8A8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		1BF1555E2492CEE7000F8E71 /* TodosListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListTableViewCell.swift; sourceTree = "<group>"; };
+		1BF1555F2492CEE7000F8E71 /* TodosListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodosListTableViewCell.xib; sourceTree = "<group>"; };
+		1BF155622492ECAB000F8E71 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		1BF155642492ED68000F8E71 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +261,7 @@
 		1BCB71652491530700297495 /* TodosList */ = {
 			isa = PBXGroup;
 			children = (
+				1BF1555D2492CEE7000F8E71 /* View */,
 				1BCB716A2491530700297495 /* TodosList.storyboard */,
 				1BCB716C2491530700297495 /* TodosListModels.swift */,
 				1BCB71662491530700297495 /* TodosListViewController.swift */,
@@ -302,6 +311,8 @@
 				1BD57D92248D388800ECF8A8 /* UIFont+Extensions.swift */,
 				1BD57D94248D398600ECF8A8 /* UIColor+Extensions.swift */,
 				1BD57D8F248D380B00ECF8A8 /* String+Extensions.swift */,
+				1BF155622492ECAB000F8E71 /* UITableView+Extensions.swift */,
+				1BF155642492ED68000F8E71 /* UITableViewCell+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -330,6 +341,15 @@
 			children = (
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		1BF1555D2492CEE7000F8E71 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1BF1555E2492CEE7000F8E71 /* TodosListTableViewCell.swift */,
+				1BF1555F2492CEE7000F8E71 /* TodosListTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BD57DA1248DCDB100ECF8A8 /* Lato-Black.ttf in Resources */,
+				1BF155612492CEE7000F8E71 /* TodosListTableViewCell.xib in Resources */,
 				1BD57D87248D348E00ECF8A8 /* CustomNavigationBar.xib in Resources */,
 				1BD57DA2248DCDB100ECF8A8 /* Lato-Regular.ttf in Resources */,
 				1B761A0A248D0A8B000051B1 /* LaunchScreen.storyboard in Resources */,
@@ -449,15 +470,18 @@
 				1BD57D7F248D26BA00ECF8A8 /* UsersListInteractor.swift in Sources */,
 				1BB2C30D248FAA99000B81E1 /* UsersListWorker.swift in Sources */,
 				1BD57D7D248D26BA00ECF8A8 /* UsersListModels.swift in Sources */,
+				1BF155632492ECAB000F8E71 /* UITableView+Extensions.swift in Sources */,
 				1BB2C327249002C1000B81E1 /* UserDetailViewController.swift in Sources */,
 				1BCB716E2491530800297495 /* TodosListInteractor.swift in Sources */,
 				1BD57D93248D388800ECF8A8 /* UIFont+Extensions.swift in Sources */,
+				1BF155652492ED68000F8E71 /* UITableViewCell+Extensions.swift in Sources */,
 				1BB2C326249002C1000B81E1 /* UserDetailModels.swift in Sources */,
 				1BD57D99248DB43500ECF8A8 /* User.swift in Sources */,
 				1BCB71702491530800297495 /* TodosListPresenter.swift in Sources */,
 				1BD57D90248D380B00ECF8A8 /* UIView+Extensions.swift in Sources */,
 				1B7619FE248D0A8A000051B1 /* AppDelegate.swift in Sources */,
 				1BCB716424914E0F00297495 /* Todo.swift in Sources */,
+				1BF155602492CEE7000F8E71 /* TodosListTableViewCell.swift in Sources */,
 				1BB2C325249002C1000B81E1 /* UserDetailRouter.swift in Sources */,
 				1BCB716F2491530800297495 /* TodosListWorker.swift in Sources */,
 				1BB2C323249002C1000B81E1 /* UserDetailPresenter.swift in Sources */,

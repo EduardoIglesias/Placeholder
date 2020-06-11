@@ -45,7 +45,7 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
             navData: NavigationBarData(
                 title: "\(title) \("todos.list.scene.title".localized)",
                 backTitle: "back.button".localized,
-                iconImage: UIImage(named: Constants.ImageNames.UserIcon),
+                iconImage: UIImage(named: Constants.ImageNames.TodoIcon),
                 rightButtonImage: UIImage(named: Constants.ImageNames.CloseIcon)))
         
         self.presenter?.presentNavBarData(response)
