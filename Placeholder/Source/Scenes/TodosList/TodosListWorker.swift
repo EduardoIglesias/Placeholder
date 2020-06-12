@@ -14,8 +14,9 @@ import Foundation
 
 protocol TodosListWorkingLogic {
     func fetchTodos(for userId: String, completion: @escaping (Result<[Todo]>) -> Void)
-    func createNewTodo(newTodo: Todo, completion: @escaping (Result<Todo>) -> Void)
+    func createTodo(newTodo: Todo, completion: @escaping (Result<Todo>) -> Void)
     func deleteTodo(todoId: String, completion: @escaping (Result<DeletedTodo>) -> Void)
+    func checkTodo(todoId: String, checked: Bool, completion: @escaping (Result<Todo>) -> Void)
 }
 
 final class TodosListWorker: TodosListWorkingLogic {
@@ -40,7 +41,7 @@ final class TodosListWorker: TodosListWorkingLogic {
         
     }
     
-    func createNewTodo(newTodo: Todo, completion: @escaping (Result<Todo>) -> Void) {
+    func createTodo(newTodo: Todo, completion: @escaping (Result<Todo>) -> Void) {
         let url = allTodosURL()
         let requestUrl = url
         var request = URLRequest(url: requestUrl)
@@ -66,6 +67,26 @@ final class TodosListWorker: TodosListWorkingLogic {
         var request = URLRequest(url: requestUrl)
         request.httpMethod = Constants.HTTPMethod.DELETE
         
+        networkWorker.request(for: request, completion: completion)
+        
+    }
+    
+    func checkTodo(todoId: String, checked: Bool, completion: @escaping (Result<Todo>) -> Void) {
+        let url = todoURL(for: todoId)
+        let requestUrl = url
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = Constants.HTTPMethod.PATCH
+        
+        let checkTodo: CheckedTodo = CheckedTodo(completed: !checked)
+        do {
+            let jsonData = try JSONEncoder().encode(checkTodo)
+            request.httpBody = jsonData
+        } catch {
+            print("*** Error: cannot create JSON from todo")
+            return
+        }
+        
+        request.setValue(Constants.TodoHeaderFields.typeValue, forHTTPHeaderField: Constants.TodoHeaderFields.typeField)
         networkWorker.request(for: request, completion: completion)
         
     }

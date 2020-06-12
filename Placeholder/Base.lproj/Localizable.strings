@@ -9,11 +9,14 @@
 // MARK: - Common
 
 "back.button" = "Back";
-"error.title" = "Error!";
-"error.message.noerror" = "no error";
+"popup.success.title" = "Hurra!";
+"popup.error.title" = "Error!";
+
 "error.button.cancel" = "Ok";
 "error.button.tryagain" = "Try again";
-
+"popup.button.no" = "No";
+"popup.button.yes" = "Yes";
+"error.message.noerror" = "no error";
 
 // MARK: - Users List Scene
 
@@ -43,12 +46,15 @@
 "todos.list.scene.error.get.message" = "We had some problems to get todos info!";
 "todos.list.scene.error.post.message" = "We had some problems creating new todo";
 "todos.list.scene.error.delete.message" = "We had some problems deleting the todo";
+"todos.list.scene.error.check.message" = "We had some problems changing the state of the todo";
 "todos.list.scene.popup.newtodo.title" = "New Todo";
 "todos.list.scene.popup.newtodo.button.create" = "Create";
 "todos.list.scene.popup.newtodo.button.cancel" = "Cancel";
 "todos.list.scene.popup.deletetodo.title" = "Are you sure to delete this todo?";
-"todos.list.scene.popup.button.deletetodo.no" = "No";
-"todos.list.scene.popup.button.deletetodo.yes" = "Yes";
-"todos.list.scene.popup.button.deletesuccess.title" = "Hurra!";
+"todos.list.scene.popup.button.createsuccess.message" = "The todo was successfully created.";
 "todos.list.scene.popup.button.deletesuccess.message" = "The todo was successfully deleted.";
+"todos.list.scene.popup.button.checkedsuccess.message" = "The todo was successfully checked.";
+"todos.list.scene.popup.button.uncheckedsuccess.message" = "The todo was successfully unchecked.";
+"todos.list.scene.popup.checktodo.title" = "Are you sure to check this todo?";
+"todos.list.scene.popup.unchecktodo.title" = "Are you sure to uncheck this todo?";
 

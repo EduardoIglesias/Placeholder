@@ -11,8 +11,8 @@ import Foundation
 struct Todo: Decodable {
   let userId: Int
   let id: Int
-  let title: String
-  let completed: Bool
+  var title: String
+  var completed: Bool
 }
 
 struct NewTodo: Codable {
@@ -23,5 +23,9 @@ struct NewTodo: Codable {
 
 struct DeletedTodo: Codable {
 
+}
+
+struct CheckedTodo: Codable {
+  let completed: Bool
 }
 

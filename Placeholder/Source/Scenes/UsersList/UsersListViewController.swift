@@ -162,7 +162,7 @@ extension UsersListViewController: UsersListDisplayLogic {
         self.userList = viewModel.users
         reloadData()
         if viewModel.error != "error.message.noerror".localized {
-            showAlert(title: "error.title".localized, message: viewModel.error, cancelButtonText: "error.button.cancel".localized, actionButtonText: "error.button.tryagain".localized, complention: fetchedUsersAction)
+            showAlert(title: "popup.error.title".localized, message: viewModel.error, cancelButtonText: "error.button.cancel".localized, actionButtonText: "error.button.tryagain".localized, complention: fetchedUsersAction)
         }
     }
 }

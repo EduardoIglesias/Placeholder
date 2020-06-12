@@ -15,11 +15,13 @@ import UIKit
 protocol TodosListBusinessLogic {
     func getNavBarData(_ request: TodosList.UpdateNavBar.Request)
     func getNoDataText(_ request: TodosList.SetText.Request)
+    func fetchTodos(_ request: TodosList.FetchTodos.Request)
     func getCreatePopUpText(_ request: TodosList.LaunchCreatePopup.Request)
     func getCreateTodo(_ request: TodosList.CreateTodo.Request)
     func getDeletePopUpText(_ request: TodosList.LaunchDeletePopup.Request)
     func getDeleteTodo(_ request: TodosList.DeleteTodo.Request)
-    func fetchTodos(_ request: TodosList.FetchTodos.Request)
+    func getCheckPopUpText(_ request: TodosList.LaunchCheckPopup.Request)
+    func getCheckTodo(_ request: TodosList.CheckTodo.Request)
     func selectTodo(_ request: TodosList.SelectTodo.Request)
 }
 
@@ -55,22 +57,41 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
     
     func getNoDataText(_ request: TodosList.SetText.Request) {
         let response = TodosList.SetText.Response(
-            noDataText: String("todos.list.scene.nousers.label".localized))
+            noDataText: "todos.list.scene.nousers.label".localized)
         self.presenter?.presentNoDataText(response)
+    }
+    
+    func fetchTodos(_ request: TodosList.FetchTodos.Request) {
+        worker.fetchTodos(for: userId)  { result in
+            switch result {
+            case .success(let todos) :
+                for todo in todos {
+                    self.todoList.append(todo)
+                }
+                self.error = "error.message.noerror".localized
+            case .failure(let error) :
+                self.error = "\("todos.list.scene.error.get.message".localized):\n\(error.localizedDescription)"
+                print("*** Error: \(error.localizedDescription)")
+            }
+            
+            let response = TodosList.FetchTodos.Response(todos: self.todoList, error: self.error)
+            self.presenter?.presentFetchedTodos(response)
+        }
+        
     }
     
     func getCreatePopUpText(_ request: TodosList.LaunchCreatePopup.Request) {
         let response = TodosList.LaunchCreatePopup.Response(
-            popupTitle: String("todos.list.scene.popup.newtodo.title".localized),
-            popupCreateText: String("todos.list.scene.popup.newtodo.button.create".localized),
-            popupCancelText: String("todos.list.scene.popup.newtodo.button.cancel".localized))
+            popupTitle: "todos.list.scene.popup.newtodo.title".localized,
+            popupCreateText: "todos.list.scene.popup.newtodo.button.create".localized,
+            popupCancelText: "todos.list.scene.popup.newtodo.button.cancel".localized)
         self.presenter?.presentCreatePopUpText(response)
     }
     
     func getCreateTodo(_ request: TodosList.CreateTodo.Request) {
         let newTodo: Todo = Todo(userId: Int(self.userId) ?? 0, id: request.newTodoData.id, title: request.newTodoData.title, completed: request.newTodoData.completed)
         
-        worker.createNewTodo(newTodo: newTodo)  { result in
+        worker.createTodo(newTodo: newTodo)  { result in
             switch result {
             case .success(let todo) :
                 self.todoList.append(todo)
@@ -91,9 +112,9 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
     func getDeletePopUpText(_ request: TodosList.LaunchDeletePopup.Request) {
         let response = TodosList.LaunchDeletePopup.Response(
             todoIndex: request.todoIndex,
-            popupTitle: String("todos.list.scene.popup.deletetodo.title".localized),
-            popupYesText: String("todos.list.scene.popup.button.deletetodo.yes".localized),
-            popupNoText: String("todos.list.scene.popup.button.deletetodo.no".localized))
+            popupTitle: "todos.list.scene.popup.deletetodo.title".localized,
+            popupYesText: "popup.button.yes".localized,
+            popupNoText: "popup.button.no".localized)
         self.presenter?.presentDeletePopUpText(response)
     }
     
@@ -116,26 +137,37 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
         }
         
     }
+        
+    func getCheckPopUpText(_ request: TodosList.LaunchCheckPopup.Request) {
+        let popupTitle = request.checked ? "todos.list.scene.popup.unchecktodo.title".localized : "todos.list.scene.popup.checktodo.title".localized
+        let response = TodosList.LaunchCheckPopup.Response(
+            todoIndex: request.todoIndex,
+            popupTitle: popupTitle,
+            popupYesText: "popup.button.yes".localized,
+            popupNoText: "popup.button.no".localized)
+        self.presenter?.presentCheckPopUpText(response)
+    }
     
-    func fetchTodos(_ request: TodosList.FetchTodos.Request) {
-        worker.fetchTodos(for: userId)  { result in
+    func getCheckTodo(_ request: TodosList.CheckTodo.Request) {
+        
+        worker.checkTodo(todoId: "\(request.todoId)", checked: request.todoChecked)  {  result in
             switch result {
-            case .success(let todos) :
-                for todo in todos {
-                    self.todoList.append(todo)
-                }
-                self.error = "error.message.noerror".localized
+            case .success(let checkedTodo) :
+                self.todoList[request.todoIndex].completed = checkedTodo.completed
+                print("*** Success: \(checkedTodo)")
+                
+                self.error = checkedTodo.completed ? "todos.list.scene.popup.button.checkedsuccess.message".localized : "todos.list.scene.popup.button.uncheckedsuccess.message".localized
             case .failure(let error) :
-                self.error = "\("todos.list.scene.error.get.message".localized):\n\(error.localizedDescription)"
+                self.error = "\("todos.list.scene.error.check.message".localized):\n\(error.localizedDescription)"
                 print("*** Error: \(error.localizedDescription)")
             }
             
-            let response = TodosList.FetchTodos.Response(todos: self.todoList, error: self.error)
-            self.presenter?.presentFetchedTodos(response)
+            let response = TodosList.CheckTodo.Response(todos: self.todoList, result: self.error)
+            self.presenter?.presentCheckTodo(response)
         }
         
     }
-    
+
     func selectTodo(_ request: TodosList.SelectTodo.Request) {
         guard !self.todoList.isEmpty, request.index < self.todoList.count else {
             return

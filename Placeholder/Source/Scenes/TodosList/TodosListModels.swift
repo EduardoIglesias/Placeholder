@@ -143,4 +143,47 @@ enum TodosList {
             let result: String
         }
     }
+    
+    // MARK: - Launch Check Popup
+    
+    enum LaunchCheckPopup {
+        struct Request {
+            let todoIndex: Int
+            let checked: Bool
+        }
+        
+        struct Response {
+            let todoIndex: Int
+            let popupTitle: String
+            let popupYesText: String
+            let popupNoText: String
+        }
+        
+        struct ViewModel {
+            let todoIndex: Int
+            let popupTitle: String
+            let popupYesText: String
+            let popupNoText: String
+        }
+    }
+    
+    // MARK: - Check Todo
+    
+    enum CheckTodo {
+        struct Request {
+            let todoId: Int
+            let todoChecked: Bool
+            let todoIndex: Int
+        }
+        
+        struct Response {
+            let todos: [Todo]
+            let result: String
+        }
+        
+        struct ViewModel {
+            let todos: [Todo]
+            let result: String
+        }
+    }
 }

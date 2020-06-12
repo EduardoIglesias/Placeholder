@@ -15,11 +15,14 @@ import UIKit
 protocol TodosListPresentationLogic {
     func presentNavBarData(_ response: TodosList.UpdateNavBar.Response)
     func presentNoDataText(_ response: TodosList.SetText.Response)
+    func presentFetchedTodos(_ response: TodosList.FetchTodos.Response)
     func presentCreatePopUpText(_ response: TodosList.LaunchCreatePopup.Response)
     func presentCreateTodo(_ response: TodosList.CreateTodo.Response)
     func presentDeletePopUpText(_ response: TodosList.LaunchDeletePopup.Response)
     func presentDeleteTodo(_ response: TodosList.DeleteTodo.Response)
-    func presentFetchedTodos(_ response: TodosList.FetchTodos.Response)
+    func presentCheckPopUpText(_ response: TodosList.LaunchCheckPopup.Response)
+    func presentCheckTodo(_ response: TodosList.CheckTodo.Response)
+    
 }
 
 class TodosListPresenter: TodosListPresentationLogic {
@@ -37,6 +40,12 @@ class TodosListPresenter: TodosListPresentationLogic {
         let viewModel = TodosList.SetText.ViewModel(
             noDataText: response.noDataText)
         viewController?.displayNoDataText(viewModel)
+    }
+    
+    func presentFetchedTodos(_ response: TodosList.FetchTodos.Response) {
+        let viewModel = TodosList.FetchTodos.ViewModel(todos: response.todos, error: response.error)
+
+      viewController?.displayFetchedTodos(viewModel)
     }
     
    func presentCreatePopUpText(_ response: TodosList.LaunchCreatePopup.Response) {
@@ -66,9 +75,17 @@ class TodosListPresenter: TodosListPresentationLogic {
         viewController?.displayDeleteTodo(viewModel)
     }
     
-    func presentFetchedTodos(_ response: TodosList.FetchTodos.Response) {
-        let viewModel = TodosList.FetchTodos.ViewModel(todos: response.todos, error: response.error)
-
-      viewController?.displayFetchedTodos(viewModel)
+    func presentCheckPopUpText(_ response: TodosList.LaunchCheckPopup.Response) {
+         let viewModel = TodosList.LaunchCheckPopup.ViewModel(
+            todoIndex: response.todoIndex,
+            popupTitle: response.popupTitle,
+            popupYesText: response.popupYesText,
+            popupNoText: response.popupNoText)
+         viewController?.displayCheckPopup(viewModel)
+     }
+    
+    func presentCheckTodo(_ response: TodosList.CheckTodo.Response) {
+        let viewModel = TodosList.CheckTodo.ViewModel(todos: response.todos, result: response.result)
+        viewController?.displayCheckTodo(viewModel)
     }
 }
