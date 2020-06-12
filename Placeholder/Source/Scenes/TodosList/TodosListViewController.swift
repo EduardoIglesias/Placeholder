@@ -279,11 +279,11 @@ extension TodosListViewController: TodosListDisplayLogic {
     func displayCreateTodo(_ viewModel: TodosList.CreateTodo.ViewModel) {
         self.todoList = viewModel.todos
        
-        if viewModel.popupMessage != "error.message.noerror".localized {
+        if viewModel.popupMessage != "todos.list.scene.popup.button.createsuccess.message".localized {
             showAlert(title: viewModel.popupTitle, message: viewModel.popupMessage, cancelButtonText: viewModel.popupCancelText, actionButtonText: viewModel.popupActionText, complention: createTodoAction)
         } else {
             showAlert(title: viewModel.popupTitle, message: viewModel.popupMessage, cancelButtonText: viewModel.popupCancelText)
-         reloadData()
+            reloadData()
         }
     }
     
