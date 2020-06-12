@@ -17,6 +17,8 @@ protocol TodosListPresentationLogic {
     func presentNoDataText(_ response: TodosList.SetText.Response)
     func presentCreatePopUpText(_ response: TodosList.LaunchCreatePopup.Response)
     func presentCreateTodo(_ response: TodosList.CreateTodo.Response)
+    func presentDeletePopUpText(_ response: TodosList.LaunchDeletePopup.Response)
+    func presentDeleteTodo(_ response: TodosList.DeleteTodo.Response)
     func presentFetchedTodos(_ response: TodosList.FetchTodos.Response)
 }
 
@@ -48,6 +50,20 @@ class TodosListPresenter: TodosListPresentationLogic {
     func presentCreateTodo(_ response: TodosList.CreateTodo.Response) {
         let viewModel = TodosList.CreateTodo.ViewModel(todos: response.todos, error: response.error)
         viewController?.displayCreateTodo(viewModel)
+    }
+    
+    func presentDeletePopUpText(_ response: TodosList.LaunchDeletePopup.Response) {
+         let viewModel = TodosList.LaunchDeletePopup.ViewModel(
+            todoIndex: response.todoIndex,
+            popupTitle: response.popupTitle,
+            popupYesText: response.popupYesText,
+            popupNoText: response.popupNoText)
+         viewController?.displayDeletePopup(viewModel)
+     }
+    
+    func presentDeleteTodo(_ response: TodosList.DeleteTodo.Response) {
+        let viewModel = TodosList.DeleteTodo.ViewModel(todos: response.todos, result: response.result)
+        viewController?.displayDeleteTodo(viewModel)
     }
     
     func presentFetchedTodos(_ response: TodosList.FetchTodos.Response) {

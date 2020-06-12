@@ -15,6 +15,7 @@ import Foundation
 protocol TodosListWorkingLogic {
     func fetchTodos(for userId: String, completion: @escaping (Result<[Todo]>) -> Void)
     func createNewTodo(newTodo: Todo, completion: @escaping (Result<Todo>) -> Void)
+    func deleteTodo(todoId: String, completion: @escaping (Result<DeletedTodo>) -> Void)
 }
 
 final class TodosListWorker: TodosListWorkingLogic {
@@ -23,6 +24,7 @@ final class TodosListWorker: TodosListWorkingLogic {
     private let networkWorker: NetworkWorkingLogic = NetworkWorker()
     private func todosURL(for userId : String) -> URL { return getUrl(for: "\(Constants.URL.Users)\(Constants.URL.ExtraSlash)\(userId)\(Constants.URL.Todos)")}
     private func allTodosURL() -> URL { return getUrl(for: Constants.URL.Todos)}
+    private func todoURL(for userId : String) -> URL { return getUrl(for: "\(Constants.URL.Todos)\(Constants.URL.ExtraSlash)\(userId)")}
           
     
     // MARK: - UsersListWorkingLogic
@@ -54,6 +56,16 @@ final class TodosListWorker: TodosListWorkingLogic {
         }
         
         request.setValue(Constants.TodoHeaderFields.typeValue, forHTTPHeaderField: Constants.TodoHeaderFields.typeField)
+        networkWorker.request(for: request, completion: completion)
+        
+    }
+    
+    func deleteTodo(todoId: String, completion: @escaping ((Result<DeletedTodo>) -> Void)) {
+        let url = todoURL(for: todoId)
+        let requestUrl = url
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = Constants.HTTPMethod.DELETE
+        
         networkWorker.request(for: request, completion: completion)
         
     }

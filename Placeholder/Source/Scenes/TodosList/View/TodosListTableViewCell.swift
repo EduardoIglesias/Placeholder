@@ -34,10 +34,11 @@ class TodosListTableViewCell: UITableViewCell {
         return String(describing: TodosListTableViewCell.self)
     }
 
-    func updateUI(item: Todo) {
+    func updateUI(index: Int, item: Todo) {
         title.text = item.title
-        deleteButton.tag = item.id
-        checkboxButton.tag = item.id
+        checkboxButton.isSelected = item.completed
+        checkboxButton.tag = index
+        deleteButton.tag = index
     }
 
 }

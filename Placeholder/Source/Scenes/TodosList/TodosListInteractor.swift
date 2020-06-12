@@ -17,6 +17,8 @@ protocol TodosListBusinessLogic {
     func getNoDataText(_ request: TodosList.SetText.Request)
     func getCreatePopUpText(_ request: TodosList.LaunchCreatePopup.Request)
     func getCreateTodo(_ request: TodosList.CreateTodo.Request)
+    func getDeletePopUpText(_ request: TodosList.LaunchDeletePopup.Request)
+    func getDeleteTodo(_ request: TodosList.DeleteTodo.Request)
     func fetchTodos(_ request: TodosList.FetchTodos.Request)
     func selectTodo(_ request: TodosList.SelectTodo.Request)
 }
@@ -82,6 +84,35 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
             
             let response = TodosList.CreateTodo.Response(todos: self.todoList, error: self.error)
             self.presenter?.presentCreateTodo(response)
+        }
+        
+    }
+    
+    func getDeletePopUpText(_ request: TodosList.LaunchDeletePopup.Request) {
+        let response = TodosList.LaunchDeletePopup.Response(
+            todoIndex: request.todoIndex,
+            popupTitle: String("todos.list.scene.popup.deletetodo.title".localized),
+            popupYesText: String("todos.list.scene.popup.button.deletetodo.yes".localized),
+            popupNoText: String("todos.list.scene.popup.button.deletetodo.no".localized))
+        self.presenter?.presentDeletePopUpText(response)
+    }
+    
+    func getDeleteTodo(_ request: TodosList.DeleteTodo.Request) {
+        
+        worker.deleteTodo(todoId: "\(request.todoId)")  {  result in
+            switch result {
+            case .success(let deletedTodo) :
+                self.todoList.remove(at: request.todoIndex)
+                print("*** Success: \(deletedTodo)")
+                
+                self.error = "todos.list.scene.popup.button.deletesuccess.message".localized
+            case .failure(let error) :
+                self.error = "\("todos.list.scene.error.delete.message".localized):\n\(error.localizedDescription)"
+                print("*** Error: \(error.localizedDescription)")
+            }
+            
+            let response = TodosList.DeleteTodo.Response(todos: self.todoList, result: self.error)
+            self.presenter?.presentDeleteTodo(response)
         }
         
     }

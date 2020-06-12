@@ -102,4 +102,45 @@ enum TodosList {
             let error: String
         }
     }
+    
+    // MARK: - Launch Delete Popup
+    
+    enum LaunchDeletePopup {
+        struct Request {
+            let todoIndex: Int
+        }
+        
+        struct Response {
+            let todoIndex: Int
+            let popupTitle: String
+            let popupYesText: String
+            let popupNoText: String
+        }
+        
+        struct ViewModel {
+            let todoIndex: Int
+            let popupTitle: String
+            let popupYesText: String
+            let popupNoText: String
+        }
+    }
+    
+    // MARK: - Delete Todo
+    
+    enum DeleteTodo {
+        struct Request {
+            let todoId: Int
+            let todoIndex: Int
+        }
+        
+        struct Response {
+            let todos: [Todo]
+            let result: String
+        }
+        
+        struct ViewModel {
+            let todos: [Todo]
+            let result: String
+        }
+    }
 }

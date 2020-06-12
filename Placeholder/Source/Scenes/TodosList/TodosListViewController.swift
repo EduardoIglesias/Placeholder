@@ -16,8 +16,10 @@ protocol TodosListDisplayLogic: class {
     func displayNavBarData(_ viewModel: TodosList.UpdateNavBar.ViewModel)
     func displayNoDataText(_ viewModel: TodosList.SetText.ViewModel)
     func displayFetchedTodos(_ viewModel: TodosList.FetchTodos.ViewModel)
-    func displayCreateTodo(_ viewModel: TodosList.CreateTodo.ViewModel)
     func displayCreatePopup(_ viewModel: TodosList.LaunchCreatePopup.ViewModel)
+    func displayCreateTodo(_ viewModel: TodosList.CreateTodo.ViewModel)
+    func displayDeletePopup(_ viewModel: TodosList.LaunchDeletePopup.ViewModel)
+    func displayDeleteTodo(_ viewModel: TodosList.DeleteTodo.ViewModel)
 }
 
 class TodosListViewController: UIViewController {
@@ -25,6 +27,7 @@ class TodosListViewController: UIViewController {
     var router: (NSObjectProtocol & TodosListRoutingLogic & TodosListDataPassing)?
     var todoList: [Todo] = []
     var newTodoText: String = ""
+    var deleteTodoIndex: Int = 0
     
     private var viewModel: TodosList.FetchTodos.ViewModel?
     
@@ -139,6 +142,16 @@ class TodosListViewController: UIViewController {
       interactor?.getCreateTodo(request)
     }
     
+    private func requestToLaunchDeletePopUp(todoIndex: Int) {
+        let request = TodosList.LaunchDeletePopup.Request(todoIndex: todoIndex)
+      interactor?.getDeletePopUpText(request)
+    }
+    
+    private func requestToDeleteTodo(todoId: Int, todoIndex: Int) {
+        let request = TodosList.DeleteTodo.Request(todoId: todoId, todoIndex: todoIndex)
+      interactor?.getDeleteTodo(request)
+    }
+    
     private func requestToSelectTodo(by indexPath: IndexPath) {
       let request = TodosList.SelectTodo.Request(index: indexPath.row)
       interactor?.selectTodo(request)
@@ -146,17 +159,25 @@ class TodosListViewController: UIViewController {
     
     // MARK: - Alert
     
-    func showAlert(title: String, message: String, cancelButtonText: String?, actionButtonText: String?, complention: (() -> Void)?) {
+    func showAlert(title: String, message: String, cancelButtonText: String?, actionButtonText: String? = nil, complention: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let alertCancel = UIAlertAction(title: cancelButtonText, style: .default, handler: nil)
         
-        let alertAction = UIAlertAction(title: actionButtonText, style: .default, handler: { (_) in
-            complention?()
-        })
-        
         alert.addAction(alertCancel)
+        
+        if actionButtonText != nil {
+            let alertAction = UIAlertAction(title: actionButtonText, style: .default, handler: { (_) in
+                complention?()
+            })
+            
+            if alertAction.title == "todos.list.scene.popup.button.deletetodo.yes".localized {
+                alertAction.setValue(UIColor.red, forKey: "titleTextColor")
+            }
+            
         alert.addAction(alertAction)
+        }
+        
         
         self.present(alert, animated: true, completion: nil)
         
@@ -165,6 +186,10 @@ class TodosListViewController: UIViewController {
     @objc func createTodoAction() {
         let newTodo:Todo = Todo(userId: 0, id: 0, title: self.newTodoText, completed: false)
         self.requestToCreateTodo(newTodo: newTodo)
+    }
+    
+    @objc func deleteTodoAction() {
+        self.requestToDeleteTodo(todoId: todoList[self.deleteTodoIndex].id, todoIndex: self.deleteTodoIndex)
     }
     
     @objc func fetchedTodosAction() {
@@ -215,6 +240,21 @@ extension TodosListViewController: TodosListDisplayLogic {
         }
     }
     
+    func displayDeletePopup(_ viewModel: TodosList.LaunchDeletePopup.ViewModel) {
+        self.deleteTodoIndex = viewModel.todoIndex
+        showAlert(title: viewModel.popupTitle, message: "", cancelButtonText: viewModel.popupNoText, actionButtonText: viewModel.popupYesText, complention: deleteTodoAction)
+    }
+    
+    func displayDeleteTodo(_ viewModel: TodosList.DeleteTodo.ViewModel) {
+        self.todoList = viewModel.todos
+        if viewModel.result != "todos.list.scene.popup.button.deletesuccess.message".localized {
+            showAlert(title: "error.title".localized, message: viewModel.result, cancelButtonText: "error.button.cancel".localized, actionButtonText: "error.button.tryagain".localized, complention: deleteTodoAction)
+        } else {
+            showAlert(title: "todos.list.scene.popup.button.deletesuccess.title".localized, message: viewModel.result, cancelButtonText: "error.button.cancel".localized)
+            reloadData()
+        }
+    }
+    
     func displayFetchedTodos(_ viewModel: TodosList.FetchTodos.ViewModel) {
         self.todoList = viewModel.todos
         reloadData()
@@ -261,7 +301,7 @@ extension TodosListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.checkboxButton.addTarget(self, action: #selector(checkboxButtonClicked(sender:)), for: .touchUpInside)
         cell.deleteButton.addTarget(self, action: #selector(deleteButtonClicked(sender:)), for: .touchUpInside)
 
-        cell.updateUI(item: todo)
+        cell.updateUI(index: indexPath.row, item: todo)
         
         return cell
     }
@@ -276,7 +316,7 @@ extension TodosListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func deleteButtonClicked (sender: UIButton) {
-        print("*** DELETE! ***")
+        requestToLaunchDeletePopUp(todoIndex: sender.tag)
     }
 
 }

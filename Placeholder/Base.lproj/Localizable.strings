@@ -42,9 +42,13 @@
 "todos.list.scene.nousers.label" = "No Todos to list";
 "todos.list.scene.error.get.message" = "We had some problems to get todos info!";
 "todos.list.scene.error.post.message" = "We had some problems creating new todo";
+"todos.list.scene.error.delete.message" = "We had some problems deleting the todo";
 "todos.list.scene.popup.newtodo.title" = "New Todo";
 "todos.list.scene.popup.newtodo.button.create" = "Create";
 "todos.list.scene.popup.newtodo.button.cancel" = "Cancel";
 "todos.list.scene.popup.deletetodo.title" = "Are you sure to delete this todo?";
 "todos.list.scene.popup.button.deletetodo.no" = "No";
 "todos.list.scene.popup.button.deletetodo.yes" = "Yes";
+"todos.list.scene.popup.button.deletesuccess.title" = "Hurra!";
+"todos.list.scene.popup.button.deletesuccess.message" = "The todo was successfully deleted.";
+

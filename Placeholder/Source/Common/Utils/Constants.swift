@@ -23,6 +23,7 @@ struct Constants {
     struct HTTPMethod {
         static let GET: String = "GET"
         static let POST: String = "POST"
+        static let DELETE: String = "DELETE"
     }
     
     struct TodoHeaderFields {

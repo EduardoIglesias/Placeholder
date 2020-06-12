@@ -21,3 +21,7 @@ struct NewTodo: Codable {
   let completed: Bool
 }
 
+struct DeletedTodo: Codable {
+
+}
+
