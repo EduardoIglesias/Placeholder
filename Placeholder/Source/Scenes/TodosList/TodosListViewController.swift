@@ -256,7 +256,11 @@ extension TodosListViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
+        cell.selectionStyle = .none
         
+        cell.checkboxButton.addTarget(self, action: #selector(checkboxButtonClicked(sender:)), for: .touchUpInside)
+        cell.deleteButton.addTarget(self, action: #selector(deleteButtonClicked(sender:)), for: .touchUpInside)
+
         cell.updateUI(item: todo)
         
         return cell
@@ -266,4 +270,13 @@ extension TodosListViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: false)
         requestToSelectTodo(by: indexPath)
     }
+    
+    @objc func checkboxButtonClicked (sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
+    
+    @objc func deleteButtonClicked (sender: UIButton) {
+        print("*** DELETE! ***")
+    }
+
 }

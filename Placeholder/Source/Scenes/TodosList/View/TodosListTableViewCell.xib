@@ -16,42 +16,48 @@
                 <rect key="frame" x="0.0" y="0.0" width="365" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckedIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dOo-1G-gGY">
-                        <rect key="frame" x="9" y="27.5" width="30" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfA-87-xaU">
+                        <rect key="frame" x="7" y="26" width="30" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="eyo-tH-kQ8"/>
-                            <constraint firstAttribute="width" constant="30" id="nte-iE-TzB"/>
+                            <constraint firstAttribute="width" constant="30" id="diO-Se-vU1"/>
                         </constraints>
-                    </imageView>
+                        <state key="normal" image="UncheckedIcon"/>
+                        <state key="selected" image="CheckedIcon"/>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categoria" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPB-Ec-6h5">
-                        <rect key="frame" x="53" y="9" width="267" height="63"/>
+                        <rect key="frame" x="46" y="9" width="275" height="62"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DeleteIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Be2-cf-sxe">
-                        <rect key="frame" x="328" y="27" width="30" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvK-ld-sii">
+                        <rect key="frame" x="329" y="26" width="30" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="Odm-ln-l6T"/>
-                            <constraint firstAttribute="width" constant="30" id="ulb-ca-3NT"/>
+                            <constraint firstAttribute="width" constant="30" id="u2S-Qt-MhR"/>
                         </constraints>
-                    </imageView>
+                        <state key="normal" image="DeleteIcon"/>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Be2-cf-sxe" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="8" id="7hq-98-fSC"/>
+                    <constraint firstItem="mfA-87-xaU" firstAttribute="firstBaseline" secondItem="vvK-ld-sii" secondAttribute="firstBaseline" id="5GS-8O-dOW"/>
+                    <constraint firstItem="mfA-87-xaU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="6Kq-z3-ijy"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="vvK-ld-sii" secondAttribute="trailing" constant="-9" id="6TF-65-YTj"/>
                     <constraint firstItem="UPB-Ec-6h5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="7tG-nk-6Rn"/>
-                    <constraint firstItem="dOo-1G-gGY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="Jb0-Bn-VEG"/>
-                    <constraint firstItem="dOo-1G-gGY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="2.5" id="LOa-Fa-dWd"/>
-                    <constraint firstItem="UPB-Ec-6h5" firstAttribute="centerY" secondItem="Be2-cf-sxe" secondAttribute="centerY" constant="-1.5" id="Nnz-U2-HNa"/>
-                    <constraint firstItem="Be2-cf-sxe" firstAttribute="leading" secondItem="UPB-Ec-6h5" secondAttribute="trailing" constant="8" id="Uyn-g5-19I"/>
-                    <constraint firstItem="UPB-Ec-6h5" firstAttribute="leading" secondItem="dOo-1G-gGY" secondAttribute="trailing" constant="14" id="VkG-WD-cm9"/>
-                    <constraint firstItem="Be2-cf-sxe" firstAttribute="centerY" secondItem="dOo-1G-gGY" secondAttribute="centerY" constant="-0.5" id="gVq-IZ-CSq"/>
+                    <constraint firstItem="UPB-Ec-6h5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KOF-YW-2g9"/>
+                    <constraint firstItem="vvK-ld-sii" firstAttribute="firstBaseline" secondItem="mfA-87-xaU" secondAttribute="firstBaseline" id="MqS-in-fyg"/>
+                    <constraint firstItem="vvK-ld-sii" firstAttribute="baseline" secondItem="mfA-87-xaU" secondAttribute="baseline" id="TCF-dK-CEG"/>
+                    <constraint firstItem="vvK-ld-sii" firstAttribute="leading" secondItem="UPB-Ec-6h5" secondAttribute="trailing" constant="8" id="Uyn-g5-19I"/>
+                    <constraint firstItem="UPB-Ec-6h5" firstAttribute="leading" secondItem="mfA-87-xaU" secondAttribute="trailing" constant="9" id="VkG-WD-cm9"/>
+                    <constraint firstItem="mfA-87-xaU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="dK3-XF-TxN"/>
+                    <constraint firstItem="mfA-87-xaU" firstAttribute="baseline" secondItem="vvK-ld-sii" secondAttribute="baseline" id="ePV-vT-pvA"/>
+                    <constraint firstItem="mfA-87-xaU" firstAttribute="top" secondItem="vvK-ld-sii" secondAttribute="top" id="l1M-s6-7b5"/>
+                    <constraint firstItem="UPB-Ec-6h5" firstAttribute="centerY" secondItem="mfA-87-xaU" secondAttribute="centerY" id="sXL-Ix-LDb"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="checkbox" destination="dOo-1G-gGY" id="X7b-dK-jG4"/>
-                <outlet property="deleteButton" destination="Be2-cf-sxe" id="8f5-fl-HQ0"/>
+                <outlet property="checkboxButton" destination="mfA-87-xaU" id="hSY-B1-UHz"/>
+                <outlet property="deleteButton" destination="vvK-ld-sii" id="OvZ-rP-nRW"/>
                 <outlet property="title" destination="UPB-Ec-6h5" id="g2o-Wh-JW5"/>
             </connections>
             <point key="canvasLocation" x="47.200000000000003" y="1.7991004497751126"/>
@@ -60,5 +66,6 @@
     <resources>
         <image name="CheckedIcon" width="294" height="296"/>
         <image name="DeleteIcon" width="305" height="315"/>
+        <image name="UncheckedIcon" width="291" height="295"/>
     </resources>
 </document>

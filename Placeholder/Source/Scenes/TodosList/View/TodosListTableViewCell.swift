@@ -10,10 +10,10 @@ import UIKit
 
 class TodosListTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var checkbox: UIImageView!
+    @IBOutlet weak var checkboxButton: UIButton!
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var deleteButton: UIImageView!
-
+    @IBOutlet weak var deleteButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -36,8 +36,8 @@ class TodosListTableViewCell: UITableViewCell {
 
     func updateUI(item: Todo) {
         title.text = item.title
-     
-
+        deleteButton.tag = item.id
+        checkboxButton.tag = item.id
     }
 
 }

@@ -59,9 +59,9 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
     
     func getCreatePopUpText(_ request: TodosList.LaunchCreatePopup.Request) {
         let response = TodosList.LaunchCreatePopup.Response(
-            popupTitle: String("todos.list.scene.popup.title".localized),
-            popupCreateText: String("todos.list.scene.popup.button.create".localized),
-            popupCancelText: String("todos.list.scene.popup.button.cancel".localized))
+            popupTitle: String("todos.list.scene.popup.newtodo.title".localized),
+            popupCreateText: String("todos.list.scene.popup.newtodo.button.create".localized),
+            popupCancelText: String("todos.list.scene.popup.newtodo.button.cancel".localized))
         self.presenter?.presentCreatePopUpText(response)
     }
     
