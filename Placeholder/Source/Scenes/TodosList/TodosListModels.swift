@@ -14,23 +14,22 @@ import UIKit
 
 enum TodosList {
     // MARK: Use cases
+
     
-    // MARK: - Fetch list of todos and display in table
-
-    enum FetchTodos {
+    // MARK: - Update Nav Bar
+    
+    enum UpdateNavBar {
         struct Request {}
-
+        
         struct Response {
-            let todos: [Todo]
-            let error: String
+            let navData: NavigationBarData
         }
-
+        
         struct ViewModel {
-           let todos: [Todo]
-            let error: String
+            let navData: NavigationBarData
         }
     }
-
+    
     // MARK: - set no data text
 
     enum SetText {
@@ -45,25 +44,23 @@ enum TodosList {
         }
     }
     
-    // MARK: - Select todo by index
+    // MARK: - Fetch list of todos and display in table
 
-    enum SelectTodo {
-        struct Request {
-            let index: Int
-        }
-    }
-    
-    // MARK: - Update Nav Bar
-    
-    enum UpdateNavBar {
+    enum FetchTodos {
         struct Request {}
-        
+
         struct Response {
-            let navData: NavigationBarData
+            let todos: [Todo]
+            let popupTitle: String
+            let popupMessage: String
+            let popupCancelText: String
         }
-        
+
         struct ViewModel {
-            let navData: NavigationBarData
+           let todos: [Todo]
+            let popupTitle: String
+            let popupMessage: String
+            let popupCancelText: String
         }
     }
     
@@ -94,12 +91,18 @@ enum TodosList {
         
         struct Response {
             let todos: [Todo]
-            let error: String
+            let popupTitle: String
+            let popupMessage: String
+            let popupCancelText: String
+            let popupActionText: String
         }
         
         struct ViewModel {
             let todos: [Todo]
-            let error: String
+            let popupTitle: String
+            let popupMessage: String
+            let popupCancelText: String
+            let popupActionText: String
         }
     }
     
@@ -135,12 +138,66 @@ enum TodosList {
         
         struct Response {
             let todos: [Todo]
-            let result: String
+            let popupTitle: String
+            let popupMessage: String
+            let popupCancelText: String
+            let popupActionText: String
         }
         
         struct ViewModel {
             let todos: [Todo]
-            let result: String
+            let popupTitle: String
+            let popupMessage: String
+            let popupCancelText: String
+            let popupActionText: String
+        }
+    }
+    
+    // MARK: - Launch Update Popup
+    
+    enum LaunchUpdatePopup {
+        struct Request {
+            let todoIndex: Int
+        }
+        
+        struct Response {
+            let todoIndex: Int
+            let popupTitle: String
+            let popupUpdateText: String
+            let popupCancelText: String
+        }
+        
+        struct ViewModel {
+            let todoIndex: Int
+            let popupTitle: String
+            let popupUpdateText: String
+            let popupCancelText: String
+        }
+    }
+    
+    // MARK: - Update Todo
+    
+    enum UpdateTodo {
+        struct Request {
+            let todoIndex: Int
+            let UpdatedTodoData: Todo
+        }
+        
+        struct Response {
+            let todos: [Todo]
+            let popupTitle: String
+            let popupMessage: String
+            let popupCancelText: String
+            let popupActionText: String
+            
+        }
+        
+        struct ViewModel {
+            let todos: [Todo]
+            let popupTitle: String
+            let popupMessage: String
+            let popupCancelText: String
+            let popupActionText: String
         }
     }
     
@@ -178,12 +235,18 @@ enum TodosList {
         
         struct Response {
             let todos: [Todo]
-            let result: String
+            let popupTitle: String
+            let popupMessage: String
+            let popupCancelText: String
+            let popupActionText: String
         }
         
         struct ViewModel {
             let todos: [Todo]
-            let result: String
+            let popupTitle: String
+            let popupMessage: String
+            let popupCancelText: String
+            let popupActionText: String
         }
     }
 }

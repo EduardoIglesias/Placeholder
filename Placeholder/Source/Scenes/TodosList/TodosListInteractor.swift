@@ -20,16 +20,18 @@ protocol TodosListBusinessLogic {
     func getCreateTodo(_ request: TodosList.CreateTodo.Request)
     func getDeletePopUpText(_ request: TodosList.LaunchDeletePopup.Request)
     func getDeleteTodo(_ request: TodosList.DeleteTodo.Request)
+    func getUpdatePopUpText(_ request: TodosList.LaunchUpdatePopup.Request)
+    func getUpdateTodo(_ request: TodosList.UpdateTodo.Request)
     func getCheckPopUpText(_ request: TodosList.LaunchCheckPopup.Request)
     func getCheckTodo(_ request: TodosList.CheckTodo.Request)
-    func selectTodo(_ request: TodosList.SelectTodo.Request)
+    
 }
 
 protocol TodosListDataStore {
     var title: String { get set }
     var userId: String { get set }
     var todoList: [Todo] { get set }
-    var error: String { get set }
+    var popupMessage: String { get set }
     var selectedTodo: Todo? { get set }
 }
 
@@ -39,7 +41,9 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
     var title: String = ""
     var userId: String = ""
     var todoList: [Todo] = []
-    var error: String = ""
+    var popupTitle = ""
+    var popupMessage: String = ""
+    var popupAction: String = ""
     var selectedTodo: Todo?
   
   // MARK: - TodosListBusinessLogic
@@ -68,13 +72,15 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
                 for todo in todos {
                     self.todoList.append(todo)
                 }
-                self.error = "error.message.noerror".localized
+                self.popupTitle = "popup.success.title".localized
+                self.popupMessage = "error.message.noerror".localized
             case .failure(let error) :
-                self.error = "\("todos.list.scene.error.get.message".localized):\n\(error.localizedDescription)"
+                self.popupTitle = "popup.error.title".localized
+                self.popupMessage = "\("todos.list.scene.error.get.message".localized):\n\(error.localizedDescription)"
                 print("*** Error: \(error.localizedDescription)")
             }
             
-            let response = TodosList.FetchTodos.Response(todos: self.todoList, error: self.error)
+            let response = TodosList.FetchTodos.Response(todos: self.todoList, popupTitle: self.popupTitle, popupMessage: self.popupMessage, popupCancelText: "error.button.cancel".localized)
             self.presenter?.presentFetchedTodos(response)
         }
         
@@ -96,14 +102,17 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
             case .success(let todo) :
                 self.todoList.append(todo)
                 print("*** Success: \(todo)")
-          
-                self.error = "error.message.noerror".localized
+                self.popupTitle = "popup.success.title".localized
+                self.popupMessage = "todos.list.scene.popup.button.createsuccess.message".localized
+                self.popupAction = ""
             case .failure(let error) :
-                self.error = "\("todos.list.scene.error.post.message".localized):\n\(error.localizedDescription)"
+                self.popupTitle = "popup.error.title".localized
+                self.popupMessage = "\("todos.list.scene.error.post.message".localized):\n\(error.localizedDescription)"
+                self.popupAction = "error.button.tryagain".localized
                 print("*** Error: \(error.localizedDescription)")
             }
             
-            let response = TodosList.CreateTodo.Response(todos: self.todoList, error: self.error)
+            let response = TodosList.CreateTodo.Response(todos: self.todoList, popupTitle: self.popupTitle, popupMessage: self.popupMessage, popupCancelText: "error.button.cancel".localized, popupActionText: self.popupAction)
             self.presenter?.presentCreateTodo(response)
         }
         
@@ -125,19 +134,54 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
             case .success(let deletedTodo) :
                 self.todoList.remove(at: request.todoIndex)
                 print("*** Success: \(deletedTodo)")
-                
-                self.error = "todos.list.scene.popup.button.deletesuccess.message".localized
+                self.popupTitle = "popup.success.title".localized
+                self.popupMessage = "todos.list.scene.popup.button.deletesuccess.message".localized
+                self.popupAction = ""
             case .failure(let error) :
-                self.error = "\("todos.list.scene.error.delete.message".localized):\n\(error.localizedDescription)"
+                self.popupTitle = "popup.error.title".localized
+                self.popupMessage = "\("todos.list.scene.error.delete.message".localized):\n\(error.localizedDescription)"
+                self.popupAction = "error.button.tryagain".localized
                 print("*** Error: \(error.localizedDescription)")
             }
             
-            let response = TodosList.DeleteTodo.Response(todos: self.todoList, result: self.error)
+            let response = TodosList.DeleteTodo.Response(todos: self.todoList, popupTitle: self.popupTitle, popupMessage: self.popupMessage, popupCancelText: "error.button.cancel".localized, popupActionText: self.popupAction)
             self.presenter?.presentDeleteTodo(response)
         }
         
     }
+       
+    func getUpdatePopUpText(_ request: TodosList.LaunchUpdatePopup.Request) {
+        let response = TodosList.LaunchUpdatePopup.Response(
+            todoIndex: request.todoIndex,
+            popupTitle: "todos.list.scene.popup.updatetodo.title".localized,
+            popupUpdateText: "todos.list.scene.popup.updatetodo.button.update".localized,
+            popupCancelText: "todos.list.scene.popup.updatetodo.button.cancel".localized)
+        self.presenter?.presentUpdatePopUpText(response)
+    }
+    
+    func getUpdateTodo(_ request: TodosList.UpdateTodo.Request) {
         
+        worker.updateTodo(updatedTodo: request.UpdatedTodoData)  { result in
+            switch result {
+            case .success(let todo) :
+                self.todoList[request.todoIndex].title = todo.title
+                print("*** Success: \(todo)")
+                self.popupTitle = "popup.success.title".localized
+                self.popupMessage = "todos.list.scene.popup.button.updatesuccess.message".localized
+                self.popupAction = ""
+            case .failure(let error) :
+                self.popupTitle = "popup.error.title".localized
+                self.popupMessage = "\("todos.list.scene.error.put.message".localized):\n\(error.localizedDescription)"
+                self.popupAction = "error.button.tryagain".localized
+                print("*** Error: \(error.localizedDescription)")
+            }
+            
+            let response = TodosList.UpdateTodo.Response(todos: self.todoList, popupTitle: self.popupTitle, popupMessage: self.popupMessage, popupCancelText: "error.button.cancel".localized, popupActionText: self.popupAction)
+            self.presenter?.presentUpdateTodo(response)
+        }
+        
+    }
+    
     func getCheckPopUpText(_ request: TodosList.LaunchCheckPopup.Request) {
         let popupTitle = request.checked ? "todos.list.scene.popup.unchecktodo.title".localized : "todos.list.scene.popup.checktodo.title".localized
         let response = TodosList.LaunchCheckPopup.Response(
@@ -155,24 +199,20 @@ class TodosListInteractor: TodosListBusinessLogic, TodosListDataStore {
             case .success(let checkedTodo) :
                 self.todoList[request.todoIndex].completed = checkedTodo.completed
                 print("*** Success: \(checkedTodo)")
-                
-                self.error = checkedTodo.completed ? "todos.list.scene.popup.button.checkedsuccess.message".localized : "todos.list.scene.popup.button.uncheckedsuccess.message".localized
+                self.popupTitle = "popup.success.title".localized
+                self.popupMessage = checkedTodo.completed ? "todos.list.scene.popup.button.checkedsuccess.message".localized : "todos.list.scene.popup.button.uncheckedsuccess.message".localized
+                self.popupAction = ""
             case .failure(let error) :
-                self.error = "\("todos.list.scene.error.check.message".localized):\n\(error.localizedDescription)"
+                self.popupTitle = "popup.error.title".localized
+                self.popupMessage = "\("todos.list.scene.error.check.message".localized):\n\(error.localizedDescription)"
+                self.popupAction = "error.button.tryagain".localized
                 print("*** Error: \(error.localizedDescription)")
             }
             
-            let response = TodosList.CheckTodo.Response(todos: self.todoList, result: self.error)
+            let response = TodosList.CheckTodo.Response(todos: self.todoList, popupTitle: self.popupTitle, popupMessage: self.popupMessage, popupCancelText: "error.button.cancel".localized, popupActionText: self.popupAction)
             self.presenter?.presentCheckTodo(response)
         }
         
     }
 
-    func selectTodo(_ request: TodosList.SelectTodo.Request) {
-        guard !self.todoList.isEmpty, request.index < self.todoList.count else {
-            return
-        }
-        
-        selectedTodo = self.todoList[request.index]
-    }
 }

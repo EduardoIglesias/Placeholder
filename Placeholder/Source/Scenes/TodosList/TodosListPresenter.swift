@@ -20,6 +20,8 @@ protocol TodosListPresentationLogic {
     func presentCreateTodo(_ response: TodosList.CreateTodo.Response)
     func presentDeletePopUpText(_ response: TodosList.LaunchDeletePopup.Response)
     func presentDeleteTodo(_ response: TodosList.DeleteTodo.Response)
+    func presentUpdatePopUpText(_ response: TodosList.LaunchUpdatePopup.Response)
+    func presentUpdateTodo(_ response: TodosList.UpdateTodo.Response)
     func presentCheckPopUpText(_ response: TodosList.LaunchCheckPopup.Response)
     func presentCheckTodo(_ response: TodosList.CheckTodo.Response)
     
@@ -33,59 +35,83 @@ class TodosListPresenter: TodosListPresentationLogic {
     func presentNavBarData(_ response: TodosList.UpdateNavBar.Response) {
         let viewModel = TodosList.UpdateNavBar.ViewModel(
             navData: response.navData)
+        
         viewController?.displayNavBarData(viewModel)
     }
     
     func presentNoDataText(_ response: TodosList.SetText.Response) {
         let viewModel = TodosList.SetText.ViewModel(
             noDataText: response.noDataText)
+        
         viewController?.displayNoDataText(viewModel)
     }
     
     func presentFetchedTodos(_ response: TodosList.FetchTodos.Response) {
-        let viewModel = TodosList.FetchTodos.ViewModel(todos: response.todos, error: response.error)
-
-      viewController?.displayFetchedTodos(viewModel)
+        let viewModel = TodosList.FetchTodos.ViewModel(todos: response.todos, popupTitle: response.popupTitle, popupMessage: response.popupMessage, popupCancelText: response.popupCancelText)
+        
+        viewController?.displayFetchedTodos(viewModel)
     }
     
-   func presentCreatePopUpText(_ response: TodosList.LaunchCreatePopup.Response) {
+    func presentCreatePopUpText(_ response: TodosList.LaunchCreatePopup.Response) {
         let viewModel = TodosList.LaunchCreatePopup.ViewModel(
             popupTitle: response.popupTitle,
             popupCreateText: response.popupCreateText,
             popupCancelText: response.popupCancelText)
+        
         viewController?.displayCreatePopup(viewModel)
     }
     
     func presentCreateTodo(_ response: TodosList.CreateTodo.Response) {
-        let viewModel = TodosList.CreateTodo.ViewModel(todos: response.todos, error: response.error)
+        let viewModel = TodosList.CreateTodo.ViewModel(todos: response.todos, popupTitle: response.popupTitle, popupMessage: response.popupMessage, popupCancelText: response.popupCancelText, popupActionText: response.popupActionText)
+        
         viewController?.displayCreateTodo(viewModel)
     }
     
     func presentDeletePopUpText(_ response: TodosList.LaunchDeletePopup.Response) {
-         let viewModel = TodosList.LaunchDeletePopup.ViewModel(
+        let viewModel = TodosList.LaunchDeletePopup.ViewModel(
             todoIndex: response.todoIndex,
             popupTitle: response.popupTitle,
             popupYesText: response.popupYesText,
             popupNoText: response.popupNoText)
-         viewController?.displayDeletePopup(viewModel)
-     }
+        
+        viewController?.displayDeletePopup(viewModel)
+    }
     
     func presentDeleteTodo(_ response: TodosList.DeleteTodo.Response) {
-        let viewModel = TodosList.DeleteTodo.ViewModel(todos: response.todos, result: response.result)
+        let viewModel = TodosList.DeleteTodo.ViewModel(todos: response.todos, popupTitle: response.popupTitle, popupMessage: response.popupMessage, popupCancelText: response.popupCancelText, popupActionText: response.popupActionText)
+        
         viewController?.displayDeleteTodo(viewModel)
     }
     
+    func presentUpdatePopUpText(_ response: TodosList.LaunchUpdatePopup.Response) {
+        let viewModel = TodosList.LaunchUpdatePopup.ViewModel(
+            todoIndex: response.todoIndex,
+            popupTitle: response.popupTitle,
+            popupUpdateText: response.popupUpdateText,
+            popupCancelText: response.popupCancelText)
+        
+        viewController?.displayUpdatePopup(viewModel)
+    }
+    
+    func presentUpdateTodo(_ response: TodosList.UpdateTodo.Response) {
+        let viewModel = TodosList.UpdateTodo.ViewModel(todos: response.todos, popupTitle: response.popupTitle, popupMessage: response.popupMessage, popupCancelText: response.popupCancelText, popupActionText: response.popupActionText)
+        
+        viewController?.displayUpdateTodo(viewModel)
+    }
+    
     func presentCheckPopUpText(_ response: TodosList.LaunchCheckPopup.Response) {
-         let viewModel = TodosList.LaunchCheckPopup.ViewModel(
+        let viewModel = TodosList.LaunchCheckPopup.ViewModel(
             todoIndex: response.todoIndex,
             popupTitle: response.popupTitle,
             popupYesText: response.popupYesText,
             popupNoText: response.popupNoText)
-         viewController?.displayCheckPopup(viewModel)
-     }
+        
+        viewController?.displayCheckPopup(viewModel)
+    }
     
     func presentCheckTodo(_ response: TodosList.CheckTodo.Response) {
-        let viewModel = TodosList.CheckTodo.ViewModel(todos: response.todos, result: response.result)
+        let viewModel = TodosList.CheckTodo.ViewModel(todos: response.todos, popupTitle: response.popupTitle, popupMessage: response.popupMessage, popupCancelText: response.popupCancelText, popupActionText: response.popupActionText)
+        
         viewController?.displayCheckTodo(viewModel)
     }
 }
