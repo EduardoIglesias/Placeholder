@@ -268,7 +268,7 @@ extension TodosListViewController: TodosListDisplayLogic {
             self.createTodoAction()
         })
         if alertAction.title == "todos.list.scene.popup.newtodo.button.create".localized {
-            alertAction.setValue(UIColor.green, forKey: "titleTextColor")
+            alertAction.setValue(UIColor.validategreen, forKey: "titleTextColor")
         }
         alert.addAction(alertAction)
 
@@ -320,7 +320,7 @@ extension TodosListViewController: TodosListDisplayLogic {
             self.updateTodoAction()
         })
         if alertAction.title == "todos.list.scene.popup.newtodo.button.create".localized || alertAction.title == "todos.list.scene.popup.updatetodo.button.update".localized {
-            alertAction.setValue(UIColor.green, forKey: "titleTextColor")
+            alertAction.setValue(UIColor.validategreen, forKey: "titleTextColor")
         }
         alert.addAction(alertAction)
 

@@ -22,4 +22,8 @@ extension UIColor {
       return UIColor(white: 45.0 / 255.0, alpha: 1.0)
     }
     
+    class var validategreen: UIColor {
+        return UIColor(red: 39.0 / 255.0, green: 195.0 / 255.0, blue: 76.0 / 255.0, alpha: 1.0)
+    }
+    
 }
