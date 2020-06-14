@@ -78,7 +78,7 @@ class UserDetailPresenterTests: XCTestCase
         // Given
         let spy = UserDetailDisplayLogicSpy()
         sut.viewController = spy
-        let response = UserDetail.SetViewFields.Response(viewFields: Seeds.UserFierldsStructs.UserFieldTest)
+        let response = UserDetail.SetViewFields.Response(viewFields: Seeds.UserFierldsStructs.userFieldTest)
         
         // When
         sut.presentViewFields(response)

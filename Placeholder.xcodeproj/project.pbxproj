@@ -13,6 +13,9 @@
 		1B761A0A248D0A8B000051B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B761A08248D0A8B000051B1 /* LaunchScreen.storyboard */; };
 		1B761A25248D14B0000051B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B761A23248D14B0000051B1 /* Localizable.strings */; };
 		1B761A2E248D1A0D000051B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B761A2D248D1A0D000051B1 /* Constants.swift */; };
+		1B7AFA0224964460008424BC /* UsersListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7AF9FF24964460008424BC /* UsersListInteractorTests.swift */; };
+		1B7AFA0324964460008424BC /* UsersListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7AFA0024964460008424BC /* UsersListViewControllerTests.swift */; };
+		1B7AFA0424964460008424BC /* UsersListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7AFA0124964460008424BC /* UsersListPresenterTests.swift */; };
 		1B9AD63B24944ED70002EE9C /* UserDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9AD63724944ED70002EE9C /* UserDetailViewControllerTests.swift */; };
 		1B9AD63C24944ED70002EE9C /* UserDetailInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9AD63824944ED70002EE9C /* UserDetailInteractorTests.swift */; };
 		1B9AD63E24944ED70002EE9C /* UserDetailPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9AD63A24944ED70002EE9C /* UserDetailPresenterTests.swift */; };
@@ -49,6 +52,9 @@
 		1BD57D99248DB43500ECF8A8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD57D97248DB43500ECF8A8 /* User.swift */; };
 		1BD57DA1248DCDB100ECF8A8 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1BD57D9D248DCDB100ECF8A8 /* Lato-Black.ttf */; };
 		1BD57DA2248DCDB100ECF8A8 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1BD57D9E248DCDB100ECF8A8 /* Lato-Regular.ttf */; };
+		1BE15F292496853C0096E5E0 /* TodosListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE15F262496853B0096E5E0 /* TodosListInteractorTests.swift */; };
+		1BE15F2A2496853C0096E5E0 /* TodosListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE15F272496853B0096E5E0 /* TodosListViewControllerTests.swift */; };
+		1BE15F2B2496853C0096E5E0 /* TodosListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE15F282496853B0096E5E0 /* TodosListPresenterTests.swift */; };
 		1BF155602492CEE7000F8E71 /* TodosListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF1555E2492CEE7000F8E71 /* TodosListTableViewCell.swift */; };
 		1BF155612492CEE7000F8E71 /* TodosListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BF1555F2492CEE7000F8E71 /* TodosListTableViewCell.xib */; };
 		1BF155632492ECAB000F8E71 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF155622492ECAB000F8E71 /* UITableView+Extensions.swift */; };
@@ -76,6 +82,9 @@
 		1B761A16248D0A8B000051B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B761A24248D14B0000051B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Placeholder/Base.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		1B761A2D248D1A0D000051B1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1B7AF9FF24964460008424BC /* UsersListInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersListInteractorTests.swift; sourceTree = "<group>"; };
+		1B7AFA0024964460008424BC /* UsersListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersListViewControllerTests.swift; sourceTree = "<group>"; };
+		1B7AFA0124964460008424BC /* UsersListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersListPresenterTests.swift; sourceTree = "<group>"; };
 		1B9AD63724944ED70002EE9C /* UserDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		1B9AD63824944ED70002EE9C /* UserDetailInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailInteractorTests.swift; sourceTree = "<group>"; };
 		1B9AD63A24944ED70002EE9C /* UserDetailPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailPresenterTests.swift; sourceTree = "<group>"; };
@@ -112,6 +121,9 @@
 		1BD57D97248DB43500ECF8A8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1BD57D9D248DCDB100ECF8A8 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		1BD57D9E248DCDB100ECF8A8 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		1BE15F262496853B0096E5E0 /* TodosListInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListInteractorTests.swift; sourceTree = "<group>"; };
+		1BE15F272496853B0096E5E0 /* TodosListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListViewControllerTests.swift; sourceTree = "<group>"; };
+		1BE15F282496853B0096E5E0 /* TodosListPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListPresenterTests.swift; sourceTree = "<group>"; };
 		1BF1555E2492CEE7000F8E71 /* TodosListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodosListTableViewCell.swift; sourceTree = "<group>"; };
 		1BF1555F2492CEE7000F8E71 /* TodosListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodosListTableViewCell.xib; sourceTree = "<group>"; };
 		1BF155622492ECAB000F8E71 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
@@ -243,6 +255,16 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		1B7AF9FE24964460008424BC /* UsersList */ = {
+			isa = PBXGroup;
+			children = (
+				1B7AFA0024964460008424BC /* UsersListViewControllerTests.swift */,
+				1B7AF9FF24964460008424BC /* UsersListInteractorTests.swift */,
+				1B7AFA0124964460008424BC /* UsersListPresenterTests.swift */,
+			);
+			path = UsersList;
+			sourceTree = "<group>";
+		};
 		1B9AD63424944B080002EE9C /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +277,9 @@
 		1B9AD63524944E3D0002EE9C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1B7AF9FE24964460008424BC /* UsersList */,
 				1B9AD63624944E550002EE9C /* UserDetail */,
+				1BE15F252496853B0096E5E0 /* TodosList */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -382,6 +406,16 @@
 			children = (
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		1BE15F252496853B0096E5E0 /* TodosList */ = {
+			isa = PBXGroup;
+			children = (
+				1BE15F272496853B0096E5E0 /* TodosListViewControllerTests.swift */,
+				1BE15F262496853B0096E5E0 /* TodosListInteractorTests.swift */,
+				1BE15F282496853B0096E5E0 /* TodosListPresenterTests.swift */,
+			);
+			path = TodosList;
 			sourceTree = "<group>";
 		};
 		1BF1555D2492CEE7000F8E71 /* View */ = {
@@ -541,9 +575,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B9AD63B24944ED70002EE9C /* UserDetailViewControllerTests.swift in Sources */,
+				1B7AFA0224964460008424BC /* UsersListInteractorTests.swift in Sources */,
+				1BE15F2A2496853C0096E5E0 /* TodosListViewControllerTests.swift in Sources */,
 				1B9AD63E24944ED70002EE9C /* UserDetailPresenterTests.swift in Sources */,
+				1B7AFA0424964460008424BC /* UsersListPresenterTests.swift in Sources */,
+				1BE15F292496853C0096E5E0 /* TodosListInteractorTests.swift in Sources */,
 				1B9AD6412494DEFD0002EE9C /* Seeds.swift in Sources */,
 				1B9AD63C24944ED70002EE9C /* UserDetailInteractorTests.swift in Sources */,
+				1BE15F2B2496853C0096E5E0 /* TodosListPresenterTests.swift in Sources */,
+				1B7AFA0324964460008424BC /* UsersListViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

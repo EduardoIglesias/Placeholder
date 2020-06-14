@@ -52,28 +52,50 @@ class UserDetailViewControllerTests: XCTestCase
   
   // MARK: Test doubles
   
-  class UserDetailBusinessLogicSpy: UserDetailBusinessLogic
-  {
-    var getNavBarDataCalled = false
-    var getViewFieldsCalled = false
-    var getUserInfoCalled = false
+    class UserDetailBusinessLogicSpy: UserDetailBusinessLogic
+    {
+        var getNavBarDataCalled = false
+        var getViewFieldsCalled = false
+        var getUserInfoCalled = false
+        
+        func getNavBarData(_ request: UserDetail.UpdateNavBar.Request)  {
+            getNavBarDataCalled = true
+        }
+        func getViewFields(_ request: UserDetail.SetViewFields.Request)  {
+            getViewFieldsCalled = true
+        }
+        func getUserInfo(_ request: UserDetail.SetUserInfo.Request)  {
+            getUserInfoCalled = true
+        }
+        
+    }
     
-    func getNavBarData(_ request: UserDetail.UpdateNavBar.Request)  {
-         getNavBarDataCalled = true
-       }
-    func getViewFields(_ request: UserDetail.SetViewFields.Request)  {
-         getViewFieldsCalled = true
-       }
-    func getUserInfo(_ request: UserDetail.SetUserInfo.Request)  {
-         getUserInfoCalled = true
-       }
-
-  }
+    class UserDetailRoutingLogicSpy: UserDetailRoutingLogic, UserDetailDataPassing {
+        var dataStore: UserDetailDataStore?
+        var routeToTodosListCalled = false
+        
+        func routeToTodosList() {
+            routeToTodosListCalled = true
+        }
+    }
   
   // MARK: Tests
   
-  func testShouldDoSomethingWhenViewIsLoaded()
-  {
+    func testTodosAccessTouchUpInside() {
+        // Given
+        let spy = UserDetailRoutingLogicSpy()
+        sut.router = spy as? (NSObjectProtocol & UserDetailDataPassing & UserDetailRoutingLogic)
+        
+        // When
+        loadView()
+        sut.todosAccessTouchUpInside("")
+        
+        // Then
+        XCTAssertTrue(spy.routeToTodosListCalled, "presentUserInfo(response:) should ask the view controller to display the result")
+        
+    }
+    
+  func testShouldSetViewFieldsStyleWhenViewIsLoaded() {
     // Given
     let spy = UserDetailBusinessLogicSpy()
     sut.interactor = spy
@@ -108,7 +130,7 @@ class UserDetailViewControllerTests: XCTestCase
     
     func testDisplayViewFields() {
       // Given
-        let viewModel = UserDetail.SetViewFields.ViewModel(viewFields: Seeds.UserFierldsStructs.UserFieldTest)
+        let viewModel = UserDetail.SetViewFields.ViewModel(viewFields: Seeds.UserFierldsStructs.userFieldTest)
       
       // When
       loadView()

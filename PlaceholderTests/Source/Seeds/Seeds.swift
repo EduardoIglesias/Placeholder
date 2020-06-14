@@ -60,7 +60,7 @@ struct Seeds {
     
     struct UserFierldsStructs {
         
-        static let UserFieldTest = UserFields(
+        static let userFieldTest = UserFields(
             usernameTitle: "usernameTitleTest",
             emailTitle: "emailTitleTest",
             addressTitle: "addressTitleTest",
@@ -69,6 +69,16 @@ struct Seeds {
             companyTitle: "companyTitleTest",
             todosAccessButtonText: "todosAccessButtonTextTest")
         
+    }
+    
+    struct Todos {
+        static let todoTest = Todo(
+            userId: 0,
+            id: 0,
+            title: "titleTest",
+            completed: true)
+        
+        static let deletedTodo = DeletedTodo()
     }
     
     struct NavBarDatas {
@@ -84,5 +94,12 @@ struct Seeds {
             backTitle: "backTitleTest",
             iconImage: nil,
             rightButtonImage: nil)
+    }
+    
+    struct Errors {
+        struct ErrorTest: LocalizedError {
+            var title: String?
+            var code: Int
+        }
     }
 }

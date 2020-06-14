@@ -121,7 +121,7 @@ class UsersListViewController: UIViewController {
     
     // MARK: - Alert
     
-    func showAlert(title: String, message: String, cancelButtonText: String?, actionButtonText: String?, complention: (() -> Void)?) {
+    private func showAlert(title: String, message: String, cancelButtonText: String?, actionButtonText: String?, complention: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let alertCancel = UIAlertAction(title: cancelButtonText, style: .default, handler: nil)
