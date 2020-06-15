@@ -21,6 +21,6 @@ Then I have implemented different repositories into scenes workers.
 I would improve it in the future using SwiftUI to rebuild user interfaces.
 
 Especially concerning security and authentication, a good way is to implement session control 
-sending session key to the server, creating the key in the login step (this is not necessary with this API).
+sending session key to the server (token), creating the key in the login step (this is not necessary with this API).
 
 All scenes are covered by Unit Tests (almost 70% of the app is covered).
