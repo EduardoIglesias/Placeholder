@@ -1,5 +1,5 @@
 # Placeholder
-Clean Swift, REST API services and more...
+Clean Swift, REST API services, Unit Tests and more...
 
 This is a small Mobile APP in Swift 5 (iOS) that consumes a REST API service 
 (the Fake API offered by https://jsonplaceholder.typicode.com/)
@@ -11,16 +11,16 @@ In Todos resources you can see implementation of GET, POST, PATCH, PUT and DELET
 The approach to present data was using a tableview in a view controller with cells (GET).
 with delete (DELETE) and check buttons (PATCH) inside of each.
 If you click in the rest of the cell you can modify main text (PUT).
-Finally i have impemented a floating button to create new Todos (POST).
+Finally i have implemented a floating button to create new Todos (POST).
 
-I have used Clean Swift methodology to create necesary scenes (https://clean-swift.com/)
+I have used Clean Swift methodology to create necessary scenes (https://clean-swift.com/)
 
 I have isolated communications layer in a common worker using generic types and Result struct from swift 5.
-Then I have implemented diferent repositories into scenes workers.
+Then I have implemented different repositories into scenes workers.
 
 I would improve it in the future using SwiftUI to rebuild user interfaces.
 
 Especially concerning security and authentication, a good way is to implement session control 
-sending sessionskey to the server, creating the key in the login step (this is no necesary with this API).
+sending session key to the server, creating the key in the login step (this is not necessary with this API).
 
 All scenes are covered by Unit Tests (almost 70% of the app is covered).
