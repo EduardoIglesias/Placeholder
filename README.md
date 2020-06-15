@@ -1,3 +1,7 @@
+[![IDE](https://img.shields.io/badge/Xcode-11-blue.svg)](https://developer.apple.com/xcode/)
+[![Language](https://img.shields.io/badge/swift-5-orange.svg)](https://swift.org)
+[![Platform](https://img.shields.io/badge/iOS-13-green.svg)](https://developer.apple.com/ios/)
+
 # Placeholder
 Clean Swift, REST API services, Unit Tests and more...
 
